@@ -19,40 +19,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="35dp"
-        android:gravity="center"
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="LoginClicked"
-        android:orientation="vertical"
+        android:padding="10dp"
+        android:text="Já possui conta?\nFaça seu login"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:gravity="center_vertical"
-            android:text="Já possui conta?"
-            android:textColor="@color/white"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:gravity="center_vertical"
-            android:text="Faça seu login"
-            android:textColor="@color/white"
-            android:textSize="14dp"
-            android:textStyle="italic" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"/>
 
     <TextView
         android:id="@+id/textView8"

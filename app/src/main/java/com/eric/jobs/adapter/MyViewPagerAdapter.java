@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.eric.jobs.fragments.HomeFragment;
-import com.eric.jobs.fragments.PerfilFragment;
+import com.eric.jobs.fragments.PerfilFragmentPrestador;
 import com.eric.jobs.fragments.PesquisarFragment;
 
 public class MyViewPagerAdapter extends FragmentStateAdapter {
@@ -26,7 +26,7 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
                 return new PesquisarFragment();
 
             case 2:
-                return new PerfilFragment();
+                return new PerfilFragmentPrestador();
 
             default:
                 return new HomeFragment();

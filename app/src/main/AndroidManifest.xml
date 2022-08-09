@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jobs">
         <activity
+            android:name=".AlterarDadosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfiguracoesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilFragmentUsuario"
+            android:exported="false" />
+        <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
