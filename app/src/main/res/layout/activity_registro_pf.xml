@@ -104,7 +104,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.129"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtEmaild" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -130,7 +130,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.121"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtEmailPF" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
 
                 <TextView
                     android:id="@+id/textView20"
@@ -143,7 +143,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.174"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
                 <TextView
                     android:id="@+id/textView21"
@@ -172,7 +172,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister4" />
 
                 <EditText
-                    android:id="@+id/edtEmaild"
+                    android:id="@+id/edtEmail"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="44dp"
@@ -211,7 +211,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
-                    android:id="@+id/edtEmailPF"
+                    android:id="@+id/edtSenhaUsuario"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="44dp"
@@ -230,7 +230,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
-                    android:id="@+id/edtConfirmarSenhaRegister"
+                    android:id="@+id/edtConfirmarSenha"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="44dp"
@@ -479,14 +479,14 @@
                     android:textColor="@color/grey"
                     android:textSize="14dp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@+id/button3"
+                    app:layout_constraintTop_toBottomOf="@+id/btnUserLogar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginBottom="50dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button3"
+                    android:id="@+id/btnUserLogar"
                     android:layout_width="125dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="30dp"

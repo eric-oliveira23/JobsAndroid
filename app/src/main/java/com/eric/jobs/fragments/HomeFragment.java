@@ -1,5 +1,6 @@
 package com.eric.jobs.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,14 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
+import com.eric.jobs.activities.MainActivity;
 import com.eric.jobs.adapter.DestaqueAdapter;
 import com.eric.jobs.adapter.ServicoAdapter;
 import com.eric.jobs.model.Destaque;
 import com.eric.jobs.model.Servico;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerDestaques, recyclerServicos;
     private List<Destaque> destaques = new ArrayList<>();
     private List<Servico> servicos = new ArrayList<>();
+    private Button btnDeslogar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnDeslogar = view.findViewById(R.id.btnDeslogar);
+
+        btnDeslogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
         //slider
         ImageSlider sliderDestaques = getView().findViewById(R.id.sliderDestaques);

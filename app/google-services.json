@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "260391014488",
+    "project_id": "jobs-ebac4",
+    "storage_bucket": "jobs-ebac4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260391014488:android:258be04c5f22edc6ccfa2d",
+        "android_client_info": {
+          "package_name": "com.eric.jobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260391014488-qvo6coujqqlv1ref9acfo2akcjkdrrar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eric.jobs",
+            "certificate_hash": "4f0ff187d1ad97b33c5f656ac4695438a9a628c2"
+          }
+        },
+        {
+          "client_id": "260391014488-7133q90kkq0nanrjdbntc4gmak2csk2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTlvTAJ9DUQ2RLVR81eLLnv2CcUna-4A8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260391014488-7133q90kkq0nanrjdbntc4gmak2csk2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
