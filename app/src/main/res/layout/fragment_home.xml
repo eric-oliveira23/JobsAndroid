@@ -80,6 +80,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerDestaques" />
 
+    <Button
+        android:id="@+id/btnDeslogar"
+        android:layout_width="39dp"
+        android:layout_height="37dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:ignore="TouchTargetSizeCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

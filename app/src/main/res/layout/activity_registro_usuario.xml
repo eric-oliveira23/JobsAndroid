@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
-        android:onClick="LoginClicked"
+        android:onClick="btnLogin"
         android:padding="10dp"
         android:text="Já possui conta?\nFaça seu login"
         android:textAlignment="center"
@@ -117,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmaild" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <TextView
         android:id="@+id/textView18"
@@ -143,10 +143,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmailPF" />
+        app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
 
     <EditText
-        android:id="@+id/edtEmaild"
+        android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -184,7 +184,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/edtEmailPF"
+        android:id="@+id/edtSenhaUsuario"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -203,7 +203,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/edtConfirmarSenhaRegister"
+        android:id="@+id/edtConfirmarSenha"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -222,16 +222,17 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/btnUserLogar"
         android:layout_width="125dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/purple_primary"
         android:text="Login"
         android:textAllCaps="false"
+        android:onClick="btnLogin"
         android:textColor="@color/purple_light"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
