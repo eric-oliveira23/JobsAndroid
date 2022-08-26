@@ -49,6 +49,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
     implementation 'com.google.firebase:firebase-core:9.6.1'
 
+    //Material Intro
+    implementation 'com.heinrichreimersoftware:material-intro:2.0.0'
+
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

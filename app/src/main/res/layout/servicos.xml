@@ -17,7 +17,6 @@
             android:id="@+id/imgServico"
             android:layout_width="180dp"
             android:layout_height="130dp"
-            android:layout_weight="1"
             android:padding="5dp"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/prestador" />
