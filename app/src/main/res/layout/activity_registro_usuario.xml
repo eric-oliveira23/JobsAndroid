@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@null"
-        android:backgroundTint="@null"
+        android:textColor="@color/black"
         android:text="Ajuda"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginBottom="20dp"
         android:onClick="btnLogin"
         android:padding="10dp"
         android:text="Já possui conta?\nFaça seu login"
@@ -31,11 +31,9 @@
         android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -69,8 +67,7 @@
         android:text="Nome Completo"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
+        android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -101,8 +98,7 @@
         android:text="E-mail"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtNomeCompleto" />
 
@@ -114,8 +110,7 @@
         android:text="Cidade"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
+        android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
@@ -127,8 +122,7 @@
         android:text="Senha"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtCidade" />
 
@@ -140,8 +134,7 @@
         android:text="Confirmar Senha"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
 
@@ -223,14 +216,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUserLogar"
-        android:layout_width="125dp"
-        android:layout_height="55dp"
-        android:backgroundTint="@color/purple_primary"
-        android:text="Login"
-        android:textAllCaps="false"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_rounded_purple"
         android:onClick="btnLogin"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
         android:textColor="@color/purple_light"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />

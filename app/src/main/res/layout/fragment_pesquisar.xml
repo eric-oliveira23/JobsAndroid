@@ -6,114 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PesquisarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="@color/purple_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/edt_search"
-            android:drawableEnd="@drawable/ic_baseline_search_24"
-            android:ems="10"
-            android:hint="Pesquisar"
-            android:inputType="text"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Sugestões de pesquisa para você"
+        android:layout_marginTop="25dp"
+        android:text="Procure por prestadores de serviço"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/edt_search"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:ems="10"
+        android:hint="Pesquisar"
+        android:inputType="text"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/searching" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Sugestões de pesquisa:"
         android:textColor="@color/grey"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button4"
+        android:id="@+id/appCompatButton2"
         android:layout_width="wrap_content"
-        android:layout_height="50sp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/purple_primary"
-        android:drawableRight="@drawable/ic_baseline_electric_bolt_24"
-        android:drawablePadding="10dp"
-        android:padding="15dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="48dp"
+        android:background="@drawable/btn_search"
+        android:padding="5dp"
         android:text="Eletricista"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="50sp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/purple_primary"
-        android:drawableRight="@drawable/ic_baseline_electric_bolt_24"
-        android:drawablePadding="10dp"
-        android:padding="15dp"
-        android:text="Eletricista"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="50sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/purple_primary"
-        android:drawableRight="@drawable/ic_baseline_electric_bolt_24"
-        android:drawablePadding="10dp"
-        android:padding="15dp"
-        android:text="Eletricista"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="15dp"
+        android:textColor="@color/grey"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button8"
+        android:id="@+id/appCompatButton"
         android:layout_width="wrap_content"
-        android:layout_height="50sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/purple_primary"
-        android:drawableRight="@drawable/ic_baseline_electric_bolt_24"
-        android:drawablePadding="10dp"
-        android:padding="15dp"
-        android:text="Eletricista"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/btn_search"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:text="Marceneiro"
+        android:textColor="@color/grey"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatButton3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/appCompatButton2"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_search"
+        android:padding="5dp"
+        android:layout_marginStart="15dp"
+        android:text="Encanador"
+        android:textColor="@color/grey"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/appCompatButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

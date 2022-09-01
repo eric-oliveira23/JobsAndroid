@@ -11,4 +11,6 @@
     <color name="light_grey">#EEF2F5</color>
     <color name="selected_color">#762DD3</color>
     <color name="unselected_color">#666666</color>
+    <color name="introbullet_light">#E0E0E0</color>
+    <color name="introbullet_purple">#7118c9</color>
 </resources>

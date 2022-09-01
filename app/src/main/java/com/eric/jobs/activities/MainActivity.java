@@ -30,21 +30,25 @@ public class MainActivity extends IntroActivity {
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.white)
                 .fragment(R.layout.intro_1)
+                .backgroundDark(R.color.introbullet_light)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.purple_primary)
                 .fragment(R.layout.intro_2)
+                .backgroundDark(R.color.introbullet_purple)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.white)
                 .fragment(R.layout.intro_3)
+                .backgroundDark(R.color.introbullet_light)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.purple_primary)
                 .fragment(R.layout.activity_main)
+                .backgroundDark(R.color.introbullet_purple)
                 .canGoForward(false)
                 .build());
 

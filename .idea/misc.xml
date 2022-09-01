@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_filter.xml" value="0.276" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_rounded.xml" value="0.276" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_rounded_purple.xml" value="0.276" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_rounded_white.xml" value="0.276" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_search.xml" value="0.276" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/btn_sugestoes.xml" value="0.228" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/cv_servicos.xml" value="0.276" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/edt_search.xml" value="0.228" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/et_login.xml" value="0.204" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/heart-free-icon-font_24.xml" value="0.1405" />
@@ -12,7 +18,7 @@
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.228" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/drawable/tab_color.xml" value="0.1555" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-hdpi/activity_cadastro.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-hdpi/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-hdpi/activity_main.xml" value="0.275" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-hdpi/activity_splash.xml" value="0.27421875" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-large/activity_main.xml" value="0.27247451343836887" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-normal/activity_main.xml" value="0.33" />
@@ -22,30 +28,30 @@
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-sw600dp/activity_splash.xml" value="0.2790328973444312" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-sw600dp/fragment_pesquisar.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-xhdpi/activity_cadastro.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-xhdpi/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-xhdpi/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-xhdpi/activity_main.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout-xhdpi/activity_splash.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_alterar_dados.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_cadastro.xml" value="0.5" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_cadastro_tipo.xml" value="0.2975630611372381" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_configuracoes.xml" value="0.2894399315946986" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_cadastro.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_cadastro_tipo.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_configuracoes.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_home.xml" value="0.33" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_main.xml" value="0.2294921875" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_login.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_perfil_fragment_usuario.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_pf.xml" value="0.2970464135021097" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_pj.xml" value="0.29717180244829045" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_usuario.xml" value="0.2975630611372381" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/destaques.xml" value="0.25" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_pf.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_pj.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_registro_usuario.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/activity_splash.xml" value="0.494140625" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/destaques.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/destques.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/fragment_home.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/fragment_perfil.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/fragment_perfilusuario.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/fragment_pesquisar.xml" value="0.33" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/fragment_pesquisar.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/intro_1.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/intro_2.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/intro_3.xml" value="0.33" />
-        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/servicos.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/servicos.xml" value="0.33" />
       </map>
     </option>
   </component>

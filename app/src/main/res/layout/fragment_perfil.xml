@@ -83,9 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8sp"
-        android:text="(14)98805-1774"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="417dp" />
+        android:text="(14) 98805-1774" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -142,10 +140,10 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/ic_baseline_circle_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sliderServicos" />
@@ -166,10 +164,10 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="45dp"
         android:src="@drawable/ic_baseline_circle_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
@@ -180,7 +178,7 @@
         android:layout_height="wrap_content"
         android:maxWidth="300dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         android:text="Instalação de aparelho para televisôes, cercas elétricas e portões elétricos"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"

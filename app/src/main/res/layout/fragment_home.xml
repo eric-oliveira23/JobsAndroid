@@ -13,40 +13,36 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="70dp"
-        android:backgroundTint="@color/purple_light"
-        android:drawableEnd="@drawable/ic_baseline_filter_alt_24"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_filter"
+        android:drawableEnd="@drawable/filter"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/poppins"
         android:text="Filtrar"
+        android:padding="10dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/grey"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/sliderDestaques"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
         app:auto_cycle="true"
-        app:corner_radius="20"
+        android:layout_marginTop="20dp"
         app:delay="0"
         app:error_image="@color/purple_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/textView40"
         app:period="2500"
-        app:placeholder="@color/black"
-        />
+        app:placeholder="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDestaques"
@@ -65,7 +61,7 @@
         android:layout_marginTop="50dp"
         android:text="Destaques"
         android:textColor="@color/grey"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sliderDestaques" />
 
@@ -73,21 +69,47 @@
         android:id="@+id/recyclerServicos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins"
+        android:text="Serviços"
+        android:textColor="@color/grey"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerDestaques" />
 
-    <Button
-        android:id="@+id/btnDeslogar"
-        android:layout_width="39dp"
-        android:layout_height="37dp"
-        android:text="Button"
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Jobs"
+        android:textSize="25sp"
+        android:textColor="@color/purple_primary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="Carregando..."
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

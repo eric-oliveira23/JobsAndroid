@@ -13,7 +13,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="4dp"
       android:background="@null"
-      android:backgroundTint="@null"
+      android:textColor="@color/black"
       android:text="Ajuda"
       android:textAllCaps="false"
       app:layout_constraintEnd_toEndOf="parent"
@@ -100,10 +100,9 @@
       android:textAlignment="center"
       android:textColor="@color/grey"
       android:textSize="18sp"
-      app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.564"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/BtnUsuario" />
 
   <TextView
       android:id="@+id/textView11"
@@ -113,10 +112,10 @@
       android:textAlignment="center"
       android:textColor="@color/grey"
       android:textSize="18sp"
-      app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.564"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintHorizontal_bias="0.526"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/button2" />
 
   <TextView
       android:id="@+id/textView12"

@@ -11,7 +11,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/BtnAjuda"
                     android:layout_width="wrap_content"
@@ -19,6 +18,7 @@
                     android:layout_marginTop="4dp"
                     android:background="@null"
                     android:backgroundTint="@null"
+                    android:textColor="@color/black"
                     android:text="Ajuda"
                     android:textAllCaps="false"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +56,7 @@
                     android:text="Nome Completo"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.166"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -88,8 +87,7 @@
                     android:text="CPF"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.127"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtNomeCompleto" />
 
@@ -101,8 +99,7 @@
                     android:text="Cidade"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.129"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
@@ -114,8 +111,7 @@
                     android:text="E-mail"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.121"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtCidade" />
 
@@ -127,8 +123,7 @@
                     android:text="Senha"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.121"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
 
@@ -140,8 +135,7 @@
                     android:text="Confirmar senha"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.174"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
@@ -153,8 +147,7 @@
                     android:text="Categoria"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.143"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -166,8 +159,7 @@
                     android:text="Celular"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.143"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister4" />
 
@@ -359,8 +351,7 @@
                     android:textColor="@color/grey"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/edtTelefoneFixo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.222"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister6" />
 
@@ -368,13 +359,10 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="100dp"
                     android:text="(não obrigatório)"
                     android:textColor="@color/purple_primary"
                     android:textSize="13sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.122"
                     app:layout_constraintStart_toEndOf="@id/textView23" />
 
                 <EditText
@@ -406,9 +394,7 @@
                     android:text="Imagem de perfil"
                     android:textColor="@color/grey"
                     android:textSize="16sp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.272"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtTelefoneFixo" />
 
@@ -420,10 +406,8 @@
                     android:layout_marginEnd="100dp"
                     android:text="Imagem de capa"
                     android:textColor="@color/grey"
-
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.248"
+                    android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnPerfil" />
 
@@ -483,14 +467,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginBottom="50dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnUserLogar"
-                    android:layout_width="125dp"
-                    android:layout_height="55dp"
+                    android:layout_width="175dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/purple_primary"
+                    android:background="@drawable/btn_rounded_purple"
                     android:text="Login"
                     android:textAllCaps="false"
                     android:textColor="@color/purple_light"

@@ -1,11 +1,34 @@
 package com.eric.jobs.model;
 
+import com.eric.jobs.config.ConfigFirebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
 public class Usuario {
 
-    String nome;
-    String email;
-    String cidade;
-    String senha;
+    private String nome;
+    private String email;
+    private String cidade;
+    private String senha;
+    private String idUser;
+
+    public void salvarUsuario(){
+
+        DatabaseReference reference = ConfigFirebase.getReference();
+        reference.child("usuarios")
+                .child(this.idUser)
+                .setValue(this);
+
+    }
+
+    @Exclude
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
 
     public String getNome() {
         return nome;
@@ -31,6 +54,7 @@ public class Usuario {
         this.cidade = cidade;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }

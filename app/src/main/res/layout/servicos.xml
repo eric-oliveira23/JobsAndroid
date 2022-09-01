@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:backgroundTint="@color/light_grey"
-    android:elevation="2dp"
+    android:backgroundTint="#F9F9F9"
+    app:cardCornerRadius="7dp"
     app:cardElevation="0dp">
 
     <LinearLayout

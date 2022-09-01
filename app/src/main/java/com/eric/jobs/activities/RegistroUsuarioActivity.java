@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.eric.jobs.R;
 import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -71,7 +72,6 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                usuario.setSenha(senha);
 
                CadastrarUser();
-
            }
        }
 
@@ -85,6 +85,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+
+                    String idUser = Base64Custom.codificarBase64(usuario.getEmail());
+                    usuario.setIdUser(idUser);
+                    usuario.salvarUsuario();
+
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
 

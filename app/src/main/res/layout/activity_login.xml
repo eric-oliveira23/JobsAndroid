@@ -7,6 +7,18 @@
     android:background="@drawable/backgroundlogin"
     tools:context=".activities.LoginActivity">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnAjuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:text="Ajuda"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -95,10 +107,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUserLogar"
-        android:layout_width="125dp"
-        android:layout_height="55dp"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
         android:layout_marginTop="70dp"
-        android:backgroundTint="@color/purple_primary"
+        android:background="@drawable/btn_rounded_purple"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/purple_light"
@@ -119,7 +131,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

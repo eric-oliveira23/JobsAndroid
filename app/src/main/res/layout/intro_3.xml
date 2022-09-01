@@ -11,11 +11,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
         android:text="Crie uma conta"
-        android:layout_marginBottom="96dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/animationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,6 +24,7 @@
         android:text="Prestador de serviços"
         android:textColor="@color/purple_primary"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvBV" />
@@ -45,11 +46,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
         android:text="Divulgue serviços em sua cidade"
-        android:layout_marginTop="96dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView" />
+        android:layout_marginBottom="100dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

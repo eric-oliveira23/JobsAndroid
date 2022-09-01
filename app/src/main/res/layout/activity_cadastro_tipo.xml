@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@null"
+        android:textColor="@color/black"
         android:backgroundTint="@null"
         android:text="Ajuda"
         android:textAllCaps="false"
@@ -33,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -64,15 +65,14 @@
         android:id="@+id/BtnUsuario"
         android:layout_width="324dp"
         android:layout_height="60dp"
-        android:layout_marginTop="48dp"
-        android:backgroundTint="@color/purple_light"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/btn_rounded_purple"
         android:onClick="PrestadorClicked"
-        android:text="Pessoa Física"
+        android:text="Cadastrar com CPF"
         android:textAllCaps="false"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -80,70 +80,16 @@
         android:id="@+id/button2"
         android:layout_width="324dp"
         android:layout_height="60dp"
-        android:layout_marginTop="76dp"
-        android:backgroundTint="@color/purple_light"
+        android:background="@drawable/btn_rounded_purple"
         android:onClick="EmpresaClicked"
-        android:text="Pessoa Jurídica"
+        android:text="Cadastrar com CNPJ"
         android:textAllCaps="false"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sem CNPJ"
-        android:textAlignment="textStart"
-        android:textColor="@color/grey"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Com CNPJ"
-        android:textAlignment="center"
-        android:textColor="@color/grey"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="*"
-        android:textColor="@color/purple_primary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintHorizontal_bias="0.74"
+        android:layout_marginTop="110dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BtnUsuario" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="*"
-        android:layout_marginRight="15dp"
-        android:textColor="@color/purple_primary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
