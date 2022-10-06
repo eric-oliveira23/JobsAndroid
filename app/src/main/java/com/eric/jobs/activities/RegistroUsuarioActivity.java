@@ -34,11 +34,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
 
-        edtNomeCompleto = findViewById(R.id.edtNomeCompleto);
-        edtEmail = findViewById(R.id.edtEmail);
+        edtNomeCompleto = findViewById(R.id.edtNomeFantasia);
+        edtEmail = findViewById(R.id.edtCNPJ);
         edtCidade = findViewById(R.id.edtCidade);
-        edtSenhaUsuario = findViewById(R.id.edtSenhaUsuario);
-        edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
+        edtSenhaUsuario = findViewById(R.id.edtEmail);
+        edtConfirmarSenha = findViewById(R.id.edtSenha);
     }
 
     public void btnLogin(View view){

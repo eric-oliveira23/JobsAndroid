@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <EditText
-            android:id="@+id/edtNomeCompleto"
+            android:id="@+id/edtNomeFantasia"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -90,7 +90,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNomeCompleto" />
+            app:layout_constraintTop_toBottomOf="@+id/edtNomeFantasia" />
 
         <TextView
             android:id="@+id/textView17"
@@ -102,7 +102,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/edtCNPJ" />
 
         <TextView
             android:id="@+id/textView18"
@@ -126,7 +126,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
         <TextView
             android:id="@+id/textView20"
@@ -138,7 +138,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
+            app:layout_constraintTop_toBottomOf="@+id/edtSenha" />
 
         <TextView
             android:id="@+id/textView21"
@@ -162,10 +162,10 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister4" />
+            app:layout_constraintTop_toBottomOf="@+id/edtCategoria" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtCNPJ"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -204,7 +204,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtSenhaUsuario"
+            android:id="@+id/edtEmail"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -223,7 +223,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtConfirmarSenha"
+            android:id="@+id/edtSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -261,7 +261,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtConfirmarSenhaRegister7"
+            android:id="@+id/edtConfirmarSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -305,7 +305,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister3" />
 
         <EditText
-            android:id="@+id/edtConfirmarSenhaRegister4"
+            android:id="@+id/edtCategoria"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -324,7 +324,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtConfirmarSenhaRegister6"
+            android:id="@+id/edtCelular"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -353,7 +353,7 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/edtTelefoneFixo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister6" />
+            app:layout_constraintTop_toBottomOf="@+id/edtCelular" />
 
         <TextView
             android:id="@+id/textView24"
@@ -463,7 +463,7 @@
             android:textColor="@color/grey"
             android:textSize="14dp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/btnUserLogar"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegistrarPf"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -471,7 +471,8 @@
             android:layout_marginTop="30dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnUserLogar"
+            android:id="@+id/btnRegistrarPf"
+            android:onClick="btnCadastrar"
             android:layout_width="175dp"
             android:layout_height="45dp"
             android:layout_marginTop="30dp"

@@ -28,7 +28,7 @@
         android:textColor="@color/grey"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+        app:layout_constraintTop_toBottomOf="@+id/txvServicos" />
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/sliderDestaques"
@@ -40,7 +40,7 @@
         app:error_image="@color/purple_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/txvJobs"
         app:period="2500"
         app:placeholder="@color/black" />
 
@@ -51,10 +51,10 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/txvDestaques" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/txvDestaques"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/txvServicos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerDestaques" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/txvJobs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -108,7 +108,7 @@
         android:text="Carregando..."
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txvJobs"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

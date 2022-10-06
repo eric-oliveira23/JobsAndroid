@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -39,7 +42,12 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerDestaques, recyclerServicos;
     private List<Destaque> destaques = new ArrayList<>();
     private List<Servico> servicos = new ArrayList<>();
-    private TextView txvWelcome;
+    private TextView txvWelcome, txvServicos, txvDestaques,
+            txvJobs;
+    private ValueEventListener valueEventListenerUsuario;
+    private Button button;
+    ImageSlider sliderDestaques;
+    Animation main, txvs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,19 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         recuperarNome();
+
+        main = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home);
+        txvs = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home_txv);
+        recyclerDestaques.startAnimation(main);
+        recyclerServicos.startAnimation(main);
+        button.startAnimation(main);
+        sliderDestaques.startAnimation(main);
+        txvServicos.startAnimation(main);
+        txvDestaques.startAnimation(main);
+
+        txvWelcome.startAnimation(txvs);
+        txvJobs.startAnimation(txvs);
+
     }
 
     @Override
@@ -64,9 +85,13 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         txvWelcome = getView().findViewById(R.id.txvWelcome);
+        button = getView().findViewById(R.id.button);
+        txvServicos = getView().findViewById(R.id.txvServicos);
+        txvDestaques = getView().findViewById(R.id.txvDestaques);
+        txvJobs = getView().findViewById(R.id.txvJobs);
 
         //slider
-        ImageSlider sliderDestaques = getView().findViewById(R.id.sliderDestaques);
+        sliderDestaques = getView().findViewById(R.id.sliderDestaques);
 
         List<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.plumber));
@@ -169,12 +194,12 @@ public class HomeFragment extends Fragment {
         DatabaseReference userReference = reference.child("usuarios")
                 .child(userId);
 
-        userReference.addValueEventListener(new ValueEventListener() {
+        valueEventListenerUsuario = userReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
 
-                txvWelcome.setText("Olá, "+usuario.getNome());
+                txvWelcome.setText("Olá, " + auth.getCurrentUser().getEmail());
             }
 
             @Override
@@ -185,4 +210,9 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        //reference.removeEventListener(valueEventListenerUsuario);
+    }
 }

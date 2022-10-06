@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtCNPJ"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -72,11 +72,11 @@
         android:text="E-mail"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtEmail"
+        app:layout_constraintBottom_toTopOf="@+id/edtCNPJ"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edtSenha"
+        android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCNPJ" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,11 +102,11 @@
         android:text="Senha"
         android:textColor="@color/grey"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtSenha"
+        app:layout_constraintBottom_toTopOf="@+id/edtEmail"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnUserLogar"
+        android:id="@+id/btnRegistrarPf"
         android:layout_width="170dp"
         android:layout_height="45dp"
         android:layout_marginTop="70dp"
@@ -116,7 +116,7 @@
         android:textColor="@color/purple_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <TextView
         android:id="@+id/textView5"

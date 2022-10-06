@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/edtNomeCompleto"
+        android:id="@+id/edtNomeFantasia"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -58,7 +58,7 @@
         android:textSize="18sp"
         android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNomeCompleto" />
+        app:layout_constraintTop_toBottomOf="@+id/edtNomeFantasia" />
 
     <TextView
         android:id="@+id/textView17"
@@ -70,7 +70,7 @@
         android:textSize="18sp"
         android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCNPJ" />
 
     <TextView
         android:id="@+id/textView18"
@@ -94,10 +94,10 @@
         android:textSize="18sp"
         android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSenhaUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtCNPJ"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -136,7 +136,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/edtSenhaUsuario"
+        android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -155,7 +155,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/edtConfirmarSenha"
+        android:id="@+id/edtSenha"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="44dp"
@@ -194,7 +194,7 @@
         android:text="Alterar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha"
+        app:layout_constraintTop_toBottomOf="@+id/edtSenha"
         android:textAllCaps="false"
         android:background="@drawable/btn_rounded_purple"
         android:textColor="@color/white"
