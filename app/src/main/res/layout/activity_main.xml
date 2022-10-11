@@ -76,7 +76,7 @@
         android:background="@color/purple_light"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
         android:drawablePadding="-25dp"
-        android:onClick="CriarContaClicked"
+        android:onClick="criarContaClicked"
         android:text="Crie sua conta"
         android:textAllCaps="false"
         android:textColor="@color/purple_primary"

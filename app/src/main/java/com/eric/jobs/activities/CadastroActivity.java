@@ -17,19 +17,18 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
     }
 
-    public void PrestarServicoClick(View view){
+    public void prestarServicoClick(View view){
         Intent intent = new Intent(this, CadastroTipoActivity.class);
         startActivity(intent);
     }
 
-    public void LoginClicked(View view){
+    public void loginClicked(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void BtnUsuarioClicked(View view){
+    public void btnUsuarioClicked(View view){
         Intent intent = new Intent(this, RegistroUsuarioActivity.class);
         startActivity(intent);
     }
-
 }

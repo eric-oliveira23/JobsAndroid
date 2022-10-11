@@ -21,11 +21,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="LoginClicked"
         android:padding="10dp"
+        android:onClick="loginClicked"
         android:text="Já possui conta?\nFaça seu login"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -67,7 +67,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/btn_rounded_purple"
-        android:onClick="PrestadorClicked"
+        android:onClick="prestadorClicked"
         android:text="Cadastrar com CPF"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -81,7 +81,7 @@
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:background="@drawable/btn_rounded_purple"
-        android:onClick="EmpresaClicked"
+        android:onClick="empresaClicked"
         android:text="Cadastrar com CNPJ"
         android:textAllCaps="false"
         android:textColor="@color/white"

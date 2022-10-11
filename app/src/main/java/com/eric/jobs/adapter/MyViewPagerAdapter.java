@@ -24,43 +24,12 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
     public MyViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
-    private FirebaseAuth auth = ConfigFirebase.getAutenticacao();
-    private DatabaseReference reference = ConfigFirebase.getReference();
-    private ValueEventListener valueEventListenerTipo;
-    String tipoUser;
-    private Prestador prestador;
-
-    public String recuperarTipoUser(){
-
-        String userEmail = auth.getCurrentUser().getEmail();
-        String userId = Base64Custom.codificarBase64(userEmail);
-
-        DatabaseReference prestadores = reference.child("prestadores")
-                .child(userId);
-
-        prestadores.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Prestador prestador = snapshot.getValue(Prestador.class);
-
-                tipoUser = prestador.getTipo();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return tipoUser;
-    }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        recuperarTipoUser();
-        String tipo = recuperarTipoUser();
-        if (tipo == "pj" || tipo == "pf"){
-        switch (position){
+
+        switch (position) {
 
             case 1:
                 return new PesquisarFragment();
@@ -71,21 +40,6 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
 
             default:
                 return new HomeFragment();
-        }
-    }
-    else {
-            switch (position){
-
-                case 1:
-                    return new PesquisarFragment();
-
-                case 2:
-
-                    return new PerfilFragmentUsuario();
-
-                default:
-                    return new HomeFragment();
-            }
         }
     }
 

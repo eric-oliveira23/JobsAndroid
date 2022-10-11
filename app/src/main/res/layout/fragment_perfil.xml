@@ -13,11 +13,11 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgBanner"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/prestador"
+        android:src="@drawable/default_banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,19 +34,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgPerfil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/prestadorantena" />
+            android:src="@drawable/default_profile" />
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/txvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:text="Paulinho das Antenas"
+        android:text="Carregando..."
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:layout_marginTop="40dp"
         android:text="Informações"
         android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView31"
+        app:layout_constraintTop_toBottomOf="@+id/txvNome"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="410dp" />
 
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/txvCelular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8sp"
-        android:text="(14) 98805-1774" />
+        android:text="Carregando..." />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -93,19 +93,19 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_location_on_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+        app:layout_constraintTop_toBottomOf="@+id/txvCelular" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/txvEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="350dp"
         android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/txvCelular"
         android:layout_marginTop="20dp"
         android:layout_marginStart="8sp"
-        android:text="Avenida das Roseiras, N 879"
+        android:text="Carregando..."
         tools:layout_editor_absoluteX="82dp"
         tools:layout_editor_absoluteY="417dp" />
 
@@ -185,6 +185,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/btn_rounded_purple"
+        android:text="Sair da Conta"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

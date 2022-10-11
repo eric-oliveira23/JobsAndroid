@@ -11,14 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
 import com.eric.jobs.activities.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PerfilFragmentUsuario extends Fragment{
 
@@ -28,7 +23,7 @@ public class PerfilFragmentUsuario extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.activity_perfil_fragment_usuario, container, false);
+            return inflater.inflate(R.layout.fragment_perfil_user, container, false);
 
 
 

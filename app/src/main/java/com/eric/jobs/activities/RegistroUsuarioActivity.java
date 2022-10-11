@@ -71,13 +71,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                usuario.setCidade(cidade);
                usuario.setSenha(senha);
 
-               CadastrarUser();
+               cadastrarUser();
            }
        }
 
     }
 
-    public void CadastrarUser(){
+    public void cadastrarUser(){
 
         autenticacao = ConfigFirebase.getAutenticacao();
         autenticacao.createUserWithEmailAndPassword(

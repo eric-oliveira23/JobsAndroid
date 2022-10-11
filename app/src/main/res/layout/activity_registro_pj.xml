@@ -35,7 +35,7 @@
             android:textColor="@color/grey"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister3" />
+            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
         <TextView
             android:id="@+id/textView9"
@@ -242,25 +242,6 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtConfirmarSenhaRegister3"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="44dp"
-            android:background="@drawable/et_login"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/grey"
-            android:textColorHint="@color/grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <EditText
             android:id="@+id/edtConfirmarSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -302,7 +283,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView25"
-            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenhaRegister3" />
+            app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
         <EditText
             android:id="@+id/edtCategoria"
@@ -379,8 +360,6 @@
             android:textColor="@color/grey"
             android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView23"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -433,7 +412,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnPerfil2"
+            android:id="@+id/btnBanner"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -482,7 +461,7 @@
             android:textColor="@color/purple_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPerfil2" />
+            app:layout_constraintTop_toBottomOf="@+id/btnBanner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

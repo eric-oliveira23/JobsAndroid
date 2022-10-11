@@ -20,6 +20,7 @@
         <item name="android:buttonStyle">@style/PoppinsButtonStyle</item>
         <item name="android:editTextStyle">@style/PoppinsEditTextStyle</item>
 
+        <item name="android:windowAnimationStyle">@style/ActivityAnim</item>
     </style>
 
     <style name="PoppinsTextViewStyle" parent="android:Widget.TextView">
@@ -32,6 +33,13 @@
 
     <style name="PoppinsButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="ActivityAnim" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out</item>
     </style>
 
 </resources>

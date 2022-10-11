@@ -1,13 +1,9 @@
 package com.eric.jobs.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.eric.jobs.R;
 import com.eric.jobs.config.ConfigFirebase;
@@ -60,30 +56,30 @@ public class MainActivity extends IntroActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        VerificarUserLogado();
+        verificarUserLogado();
     }
 
-    public void VerificarUserLogado(){
+    public void verificarUserLogado(){
 
         autenticacao = ConfigFirebase.getAutenticacao();
 
         if (autenticacao.getCurrentUser() != null){
-            AbrirHome();
+            abrirHome();
         }
 
     }
 
-    public void CriarContaClicked(View view){
+    public void criarContaClicked(View view){
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
     }
 
-    public void LoginClicked(View view){
+    public void loginClicked(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void AbrirHome(){
+    public void abrirHome(){
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

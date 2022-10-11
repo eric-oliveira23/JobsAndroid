@@ -6,12 +6,18 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
 
 import com.eric.jobs.adapter.MyViewPagerAdapter;
 import com.eric.jobs.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends AppCompatActivity {
+
+//    private long backPressedTime;
+    private boolean doubleBackPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,5 +79,25 @@ public class HomeActivity extends AppCompatActivity {
         SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
         viewPagerTab.setViewPager(viewPager);*/
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+       if (doubleBackPressed){
+           super.onBackPressed();
+           this.finishAffinity();
+       }
+       this.doubleBackPressed = true;
+        Toast.makeText(this,
+                "Pressione novamente para sair",
+                Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackPressed = false;
+            }
+        },2000);
     }
 }
