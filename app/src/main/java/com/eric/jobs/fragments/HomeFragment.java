@@ -5,16 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,13 +22,11 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
 import com.eric.jobs.adapter.DestaqueAdapter;
 import com.eric.jobs.adapter.ServicoAdapter;
-import com.eric.jobs.config.ConfigFirebase;
-import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Destaque;
 import com.eric.jobs.model.Prestador;
-import com.eric.jobs.model.Servico;
 import com.eric.jobs.model.Usuario;
-import com.google.firebase.auth.FirebaseAuth;
+import com.eric.jobs.services.ConfigFirebase;
+import com.eric.jobs.services.user.UserRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,15 +37,15 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private FirebaseAuth auth = ConfigFirebase.getAutenticacao();
-    private DatabaseReference reference = ConfigFirebase.getReference();
-    private DatabaseReference servicosRef;
+    private final UserRepository userRepository = new UserRepository();
     private RecyclerView recyclerDestaques, recyclerServicos;
-    private List<Destaque> destaques = new ArrayList<>();
-    private List<Prestador> prestadors = new ArrayList<>();
+    private final List<Destaque> destaques = new ArrayList<>();
+    private final List<Prestador> prestadors = new ArrayList<>();
     private TextView txvWelcome, txvServicos, txvDestaques,
             txvJobs;
-    private ValueEventListener valueEventListenerUsuario, valueEventListenerPrestador, valueEventListenerServicos;
+    private DatabaseReference reference = ConfigFirebase.getReference();
+    private DatabaseReference servicosRef;
+    private ValueEventListener valueEventListenerServicos;
     private ServicoAdapter servicoAdapter;
     private Button button;
     ImageSlider sliderDestaques;
@@ -62,7 +59,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        recuperarNome();
 
         main = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home);
         txvs = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home_txv);
@@ -76,7 +72,7 @@ public class HomeFragment extends Fragment {
         txvWelcome.startAnimation(txvs);
         txvJobs.startAnimation(txvs);
 
-        this.recuperarServicos();
+        observable();
     }
 
     @Override
@@ -121,6 +117,7 @@ public class HomeFragment extends Fragment {
         recyclerDestaques.setLayoutManager(layoutManager);
 
         this.prepararDestaques();
+        this.recuperarServicos();
 
         //define o adapter
         DestaqueAdapter destaqueAdapter = new DestaqueAdapter(destaques);
@@ -146,6 +143,55 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void observable() {
+        Observer<Usuario> usuarioObserver = new Observer<Usuario>() {
+            @Override
+            public void onChanged(@Nullable Usuario usuario) {
+                if (usuario != null) {
+                    txvWelcome.setText("Olá, " + usuario.getNome());
+                }
+            }
+        };
+
+        Observer<Prestador> prestadorObserver = new Observer<Prestador>() {
+            @Override
+            public void onChanged(@Nullable Prestador prestador) {
+                if (prestador != null) {
+                    txvWelcome.setText("Olá, " + prestador.getNome());
+                }
+            }
+        };
+
+        userRepository.getUsuario().observe(this, usuarioObserver);
+        userRepository.getPrestador().observe(this, prestadorObserver);
+    }
+
+    public void recuperarServicos(){
+
+        servicosRef = reference.child("prestadores");
+
+        valueEventListenerServicos = servicosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                prestadors.clear();
+
+                for (DataSnapshot dados : snapshot.getChildren()) {
+
+                    Prestador prestador = dados.getValue(Prestador.class);
+                    prestadors.add(prestador);
+
+                }
+                servicoAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void prepararDestaques(){
 
         Destaque d;
@@ -165,78 +211,6 @@ public class HomeFragment extends Fragment {
         this.destaques.add(d);
 
     }
-
-    public void recuperarServicos(){
-
-        servicosRef = reference.child("prestadores");
-
-        valueEventListenerServicos = servicosRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-               prestadors.clear();
-
-                for (DataSnapshot dados : snapshot.getChildren()) {
-
-                    Prestador prestador = dados.getValue(Prestador.class);
-                    prestadors.add(prestador);
-
-                }
-
-                servicoAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public void recuperarNome() {
-
-            String userEmail = auth.getCurrentUser().getEmail();
-            String userId = Base64Custom.codificarBase64(userEmail);
-
-            DatabaseReference userReference = reference.child("usuarios")
-                    .child(userId);
-
-            valueEventListenerUsuario = userReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Usuario usuario = snapshot.getValue(Usuario.class);
-
-                    try {
-                        txvWelcome.setText("Olá, " + usuario.getNome());
-                    }
-                         catch (Exception exception) {
-
-                              DatabaseReference prestadorReference = reference.child("prestadores")
-                                     .child(userId);
-
-                             valueEventListenerPrestador = prestadorReference.addValueEventListener(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                     Prestador prestador = snapshot.getValue(Prestador.class);
-                                     txvWelcome.setText("Olá, " + prestador.getNome());
-                                 }
-
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError error) {
-
-                                 }
-                             });
-                        }
-                    }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-        }
 
     @Override
     public void onStop() {

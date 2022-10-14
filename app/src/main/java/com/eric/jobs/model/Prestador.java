@@ -1,23 +1,23 @@
 package com.eric.jobs.model;
 
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 public class Prestador {
 
-    private String nome;
-    private String tipo;
-    private String documento;
-    private String cidade;
-    private String email;
-    private String senha;
-    private String categoria;
-    private String celular;
-    private String telefone;
-    private String img_perfil;
-    private String img_capa;
-    private String idUser;
+    private String nome = "";
+    private String tipo = "";
+    private String documento = "";
+    private String cidade = "";
+    private String email = "";
+    private String senha = "";
+    private String categoria = "";
+    private String celular = "";
+    private String telefone = null;
+    private String img_perfil = "";
+    private String img_capa = "";
+    private String idUser = "";
 
     public void salvarPrestador(){
 

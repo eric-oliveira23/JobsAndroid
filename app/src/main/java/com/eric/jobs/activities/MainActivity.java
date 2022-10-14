@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.eric.jobs.R;
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;

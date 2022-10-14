@@ -8,8 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Prestador;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -34,8 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.util.UUID;
 
 public class RegistroPjActivity extends AppCompatActivity {
 
@@ -48,7 +43,6 @@ public class RegistroPjActivity extends AppCompatActivity {
     private Button btnPerfil, btnBanner;
     private Uri profUri, bannerUri;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    String imageType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +55,6 @@ public class RegistroPjActivity extends AppCompatActivity {
         btnPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageType = "pp";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -245,6 +238,8 @@ public class RegistroPjActivity extends AppCompatActivity {
                         pd.dismiss();
 //                        Toast.makeText(RegistroPjActivity.this, "Imagem selecionada",
 //                                Toast.LENGTH_SHORT).show();
+
+//                        prestador.setImg_perfil(taskSnapshot.getStorage().getDownloadUrl().getResult().toString());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

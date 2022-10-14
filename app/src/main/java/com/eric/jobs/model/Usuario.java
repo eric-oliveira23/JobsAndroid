@@ -1,6 +1,6 @@
 package com.eric.jobs.model;
 
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 

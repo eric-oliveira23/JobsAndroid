@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;

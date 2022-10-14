@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,21 +22,18 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
 import com.eric.jobs.activities.MainActivity;
-import com.eric.jobs.config.ConfigFirebase;
+import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Prestador;
 import com.eric.jobs.model.Usuario;
+import com.eric.jobs.services.user.UserRepository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,10 +42,12 @@ import java.util.List;
 
 public class PerfilFragmentPrestador extends Fragment {
 
+    private final UserRepository userRepository = new UserRepository();
+
     private TextView txvCelular, txvEndereco, txvNome;
     private FirebaseAuth auth = ConfigFirebase.getAutenticacao();
     private DatabaseReference reference = ConfigFirebase.getReference();
-    private ValueEventListener valueEventListenerUsuario, valueEventListenerProfile;
+
     private Button btnLogout;
     private StorageReference profReference = FirebaseStorage.getInstance().getReference();
     private StorageReference bannerReference = FirebaseStorage.getInstance().getReference();
@@ -63,7 +64,7 @@ public class PerfilFragmentPrestador extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recuperarNome();
+        observable();
         recuperarImagens();
 
         txvCelular = getView().findViewById(R.id.txvCelular);
@@ -94,54 +95,27 @@ public class PerfilFragmentPrestador extends Fragment {
 
     }
 
-    public void recuperarNome() {
-
-        String userEmail = auth.getCurrentUser().getEmail();
-        String userId = Base64Custom.codificarBase64(userEmail);
-
-        DatabaseReference userReference = reference.child("prestadores")
-                .child(userId);
-
-        valueEventListenerUsuario = userReference.addValueEventListener(new ValueEventListener() {
+    private void observable() {
+        Observer<Usuario> usuarioObserver = new Observer<Usuario>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Prestador prestador = snapshot.getValue(Prestador.class);
+            public void onChanged(@Nullable Usuario usuario) {
+                txvNome.setText(usuario != null ? usuario.getNome() : "");
+            }
+        };
 
-                try {
+        Observer<Prestador> prestadorObserver = new Observer<Prestador>() {
+            @Override
+            public void onChanged(@Nullable Prestador prestador) {
+                if (prestador != null) {
                     txvCelular.setText(prestador.getCelular());
                     txvEndereco.setText(prestador.getCidade());
                     txvNome.setText(prestador.getNome());
-                } catch (Exception exception) {
-
-                    String userEmail = auth.getCurrentUser().getEmail();
-                    String userId = Base64Custom.codificarBase64(userEmail);
-
-                    DatabaseReference userReference = reference.child("usuarios")
-                            .child(userId);
-
-                    userReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Usuario usuario = snapshot.getValue(Usuario.class);
-
-                            txvNome.setText(usuario.getNome());
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
                 }
             }
+        };
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        userRepository.getUsuario().observe(this, usuarioObserver);
+        userRepository.getPrestador().observe(this, prestadorObserver);
     }
 
 
@@ -181,7 +155,3 @@ public class PerfilFragmentPrestador extends Fragment {
         }
     }
 }
-
-
-//consertar erro dos uploads das imagens e ver o pq as vezes nao vai e cai no catch do email válido
-

@@ -52,6 +52,22 @@
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/intro_2.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/intro_3.xml" value="0.33" />
         <entry key="..\:/Users/T-GAMER/AndroidStudioProjects/Jobs/app/src/main/res/layout/servicos.xml" value="0.33" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout-hdpi/activity_cadastro.xml" value="0.153125" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout-hdpi/activity_splash.xml" value="0.153125" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout-xhdpi/activity_cadastro.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout-xhdpi/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout/activity_cadastro_tipo.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout/activity_registro_pf.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout/activity_registro_pj.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/T-GAMER/Desktop/JobsAndroid/app/src/main/res/layout/activity_splash.xml" value="0.8166666666666667" />
+        <entry key="app/src/main/res/layout-hdpi/activity_main.xml" value="0.13006885998469778" />
+        <entry key="app/src/main/res/layout-hdpi/activity_splash.xml" value="0.13006885998469778" />
+        <entry key="app/src/main/res/layout-xhdpi/activity_main.xml" value="0.17223910840932116" />
+        <entry key="app/src/main/res/layout-xhdpi/activity_splash.xml" value="0.17223910840932116" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17223910840932116" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.6367041198501873" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.31567028985507245" />
       </map>
     </option>
   </component>

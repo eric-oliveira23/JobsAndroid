@@ -26,8 +26,8 @@ public class SplashActivity extends AppCompatActivity {
         animationView = findViewById(R.id.animationView);
         txvLogo = findViewById(R.id.txvLogo);
 
-        animationView.animate().translationX(-1600).setDuration(1000).setStartDelay(3000);
         txvLogo.animate().translationX(1600).setDuration(1000).setStartDelay(3500);
+        animationView.animate().translationX(-1600).setDuration(1000).setStartDelay(3600);
 
         new Handler().postDelayed(new Runnable() {
             @Override

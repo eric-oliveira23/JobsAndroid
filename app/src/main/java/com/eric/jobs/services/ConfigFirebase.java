@@ -1,4 +1,4 @@
-package com.eric.jobs.config;
+package com.eric.jobs.services;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -12,10 +12,9 @@ public class ConfigFirebase {
     public static FirebaseAuth getAutenticacao(){
 
         if (autenticacao == null){
-
             autenticacao = FirebaseAuth.getInstance();
-
         }
+
         return autenticacao;
     }
 
@@ -28,8 +27,7 @@ public class ConfigFirebase {
         if (reference == null){
             reference = FirebaseDatabase.getInstance().getReference();
         }
+
         return reference;
-
     }
-
 }
