@@ -60,8 +60,7 @@ public class UserRepository {
             });
 
             return prestador;
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
 
         return null;
     }

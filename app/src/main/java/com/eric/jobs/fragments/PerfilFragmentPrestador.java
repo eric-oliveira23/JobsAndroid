@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
@@ -44,11 +45,12 @@ public class PerfilFragmentPrestador extends Fragment {
 
     private final UserRepository userRepository = new UserRepository();
 
+    private ConstraintLayout constraintUser, constraintPrestador;
     private TextView txvCelular, txvEndereco, txvNome;
     private FirebaseAuth auth = ConfigFirebase.getAutenticacao();
     private DatabaseReference reference = ConfigFirebase.getReference();
 
-    private Button btnLogout;
+    private Button btnLogout, btnLogoutUser;
     private StorageReference profReference = FirebaseStorage.getInstance().getReference();
     private StorageReference bannerReference = FirebaseStorage.getInstance().getReference();
     private ImageView imgPerfil, imgBanner;
@@ -72,14 +74,23 @@ public class PerfilFragmentPrestador extends Fragment {
         txvNome = getView().findViewById(R.id.txvNome);
         imgBanner = getView().findViewById(R.id.imgBanner);
         imgPerfil = getView().findViewById(R.id.imgPerfil);
+        constraintUser = getView().findViewById(R.id.constraintUser);
+        constraintPrestador = getView().findViewById(R.id.constraintPrestador);
 
         btnLogout = getView().findViewById(R.id.btnLogout);
+        btnLogoutUser = getView().findViewById(R.id.btnLogoutUser);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                signOut();
+            }
+        });
+
+        btnLogoutUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signOut();
             }
         });
 
@@ -100,6 +111,8 @@ public class PerfilFragmentPrestador extends Fragment {
             @Override
             public void onChanged(@Nullable Usuario usuario) {
                 txvNome.setText(usuario != null ? usuario.getNome() : "");
+                constraintUser.setVisibility(View.VISIBLE);
+                constraintPrestador.setVisibility(View.GONE);
             }
         };
 
@@ -107,6 +120,8 @@ public class PerfilFragmentPrestador extends Fragment {
             @Override
             public void onChanged(@Nullable Prestador prestador) {
                 if (prestador != null) {
+                    constraintPrestador.setVisibility(View.VISIBLE);
+                    constraintUser.setVisibility(View.GONE);
                     txvCelular.setText(prestador.getCelular());
                     txvEndereco.setText(prestador.getCidade());
                     txvNome.setText(prestador.getNome());
@@ -154,4 +169,11 @@ public class PerfilFragmentPrestador extends Fragment {
             e.printStackTrace();
         }
     }
+
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getActivity(), MainActivity.class));
+    }
+
+
 }
