@@ -16,7 +16,6 @@ import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends AppCompatActivity {
 
-//    private long backPressedTime;
     private boolean doubleBackPressed = false;
 
     @Override

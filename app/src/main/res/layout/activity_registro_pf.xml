@@ -113,7 +113,7 @@
                     android:textSize="18sp"
                     android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtCidade" />
+                    app:layout_constraintTop_toBottomOf="@+id/txvCidade" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -152,6 +152,38 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Tempo de experiência"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    android:layout_marginStart="45dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txvCategoria" />
+
+                <Spinner
+                    android:id="@+id/spinExp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="44dp"
+                    android:background="@drawable/et_login"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +193,7 @@
                     android:textSize="18sp"
                     android:layout_marginStart="45dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtCategoria" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinExp" />
 
                 <com.santalu.maskara.widget.MaskEditText
                     android:id="@+id/edtCNPJ"
@@ -183,8 +215,8 @@
                     app:mask="___.___.___-__"
                     tools:ignore="SpeakableTextPresentCheck" />
 
-                <EditText
-                    android:id="@+id/edtCidade"
+                <TextView
+                    android:id="@+id/txvCidade"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="44dp"
@@ -192,7 +224,6 @@
                     android:layout_marginEnd="44dp"
                     android:background="@drawable/et_login"
                     android:ems="10"
-                    android:inputType="text"
                     android:padding="10dp"
                     android:textColor="@color/grey"
                     android:textColorHint="@color/grey"
@@ -200,6 +231,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView17"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
@@ -284,16 +316,15 @@
                     app:layout_constraintStart_toEndOf="@+id/textView25"
                     app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
-                <EditText
-                    android:id="@+id/edtCategoria"
+                <TextView
+                    android:id="@+id/txvCategoria"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="44dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="44dp"
                     android:background="@drawable/et_login"
                     android:ems="10"
-                    android:inputType="text"
                     android:padding="10dp"
                     android:textColor="@color/grey"
                     android:textColorHint="@color/grey"
@@ -301,7 +332,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView21"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
                 <com.santalu.maskara.widget.MaskEditText
                     android:id="@+id/edtCelular"
@@ -321,7 +353,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView22"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:layout_marginTop="5dp"
-                    app:mask="(__)________"/>
+                    app:mask="(__)__________"/>
 
                 <TextView
                     android:id="@+id/textView23"

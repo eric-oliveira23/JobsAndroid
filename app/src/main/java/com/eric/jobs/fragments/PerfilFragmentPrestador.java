@@ -46,13 +46,12 @@ public class PerfilFragmentPrestador extends Fragment {
     private final UserRepository userRepository = new UserRepository();
 
     private ConstraintLayout constraintUser, constraintPrestador;
-    private TextView txvCelular, txvEndereco, txvNome;
-    private FirebaseAuth auth = ConfigFirebase.getAutenticacao();
-    private DatabaseReference reference = ConfigFirebase.getReference();
+    private TextView txvCelular, txvEndereco, txvNome, txvCategoria;
+    private final FirebaseAuth auth = ConfigFirebase.getAutenticacao();
+    private final DatabaseReference reference = ConfigFirebase.getReference();
 
-    private Button btnLogout, btnLogoutUser;
-    private StorageReference profReference = FirebaseStorage.getInstance().getReference();
-    private StorageReference bannerReference = FirebaseStorage.getInstance().getReference();
+    private final StorageReference profReference = FirebaseStorage.getInstance().getReference();
+    private final StorageReference bannerReference = FirebaseStorage.getInstance().getReference();
     private ImageView imgPerfil, imgBanner;
 
     @Override
@@ -72,13 +71,14 @@ public class PerfilFragmentPrestador extends Fragment {
         txvCelular = getView().findViewById(R.id.txvCelular);
         txvEndereco = getView().findViewById(R.id.txvEndereco);
         txvNome = getView().findViewById(R.id.txvNome);
+        txvCategoria = getView().findViewById(R.id.txvCategoria);
         imgBanner = getView().findViewById(R.id.imgBanner);
         imgPerfil = getView().findViewById(R.id.imgPerfil);
         constraintUser = getView().findViewById(R.id.constraintUser);
         constraintPrestador = getView().findViewById(R.id.constraintPrestador);
 
-        btnLogout = getView().findViewById(R.id.btnLogout);
-        btnLogoutUser = getView().findViewById(R.id.btnLogoutUser);
+        Button btnLogout = getView().findViewById(R.id.btnLogout);
+        Button btnLogoutUser = getView().findViewById(R.id.btnLogoutUser);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +125,7 @@ public class PerfilFragmentPrestador extends Fragment {
                     txvCelular.setText(prestador.getCelular());
                     txvEndereco.setText(prestador.getCidade());
                     txvNome.setText(prestador.getNome());
+                    txvCategoria.setText(prestador.getCategoria());
                 }
             }
         };

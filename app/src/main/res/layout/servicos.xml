@@ -24,24 +24,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="25sp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginStart="10sp"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/tituloServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="5sp"
                 android:text="Mr. Plumber"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                android:maxLength="20"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/categoriaServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="60"
                 android:text="Encanador"
                 android:textColor="@color/grey" />
 
@@ -49,7 +50,7 @@
                 android:id="@+id/cidadeServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
+                android:layout_marginBottom="0sp"
                 android:text="Bocaina - SP"
                 android:textColor="@color/grey" />
         </LinearLayout>

@@ -12,7 +12,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/buttonFilter"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
@@ -21,7 +21,7 @@
         android:drawableEnd="@drawable/filter"
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
-        android:text="Filtrar"
+        android:text="Filtrar por cidade"
         android:padding="10dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonFilter" />
 
     <TextView
         android:id="@+id/txvServicos"

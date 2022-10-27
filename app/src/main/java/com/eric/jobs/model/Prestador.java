@@ -18,6 +18,7 @@ public class Prestador {
     private String img_perfil = "";
     private String img_capa = "";
     private String idUser = "";
+    private String ano_experiencia = "";
 
     public void salvarPrestador(){
 
@@ -27,6 +28,15 @@ public class Prestador {
                 .setValue(this);
 
     }
+
+    public String getAno_experiencia() {
+        return ano_experiencia;
+    }
+
+    public void setAno_experiencia(String ano_experiencia) {
+        this.ano_experiencia = ano_experiencia;
+    }
+
 
     @Exclude
     public String getIdUser() {
@@ -118,6 +128,7 @@ public class Prestador {
         this.img_perfil = img_perfil;
     }
 
+    @Exclude
     public String getImg_capa() {
         return img_capa;
     }

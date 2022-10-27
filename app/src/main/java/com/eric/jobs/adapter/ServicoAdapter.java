@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.eric.jobs.R;
 import com.eric.jobs.model.Prestador;
 import com.eric.jobs.model.Servico;
@@ -25,6 +26,11 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
     public ServicoAdapter(List<Prestador> servicoList, FragmentActivity activity) {
         this.prestadors = servicoList;
         this.context = activity;
+    }
+
+    public void setFilteredList(List<Prestador> filteredList){
+        this.prestadors = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,6 +49,7 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
         holder.categoriaServico.setText(prestador.getCategoria());
         holder.cidadeServico.setText(prestador.getCidade());
       // holder.imgServico.setImageResource(prestador.get);
+        Glide.with(context).load(prestadors.get(position).getImg_perfil()).into(holder.imgServico);
 
     }
 

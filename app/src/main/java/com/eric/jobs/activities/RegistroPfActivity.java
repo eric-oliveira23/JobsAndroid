@@ -4,13 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,22 +36,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class RegistroPfActivity extends AppCompatActivity {
+public class RegistroPfActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView btnLogar;
+    private TextView btnLogar, txvCategoria, txvCidade;
     private Button btnRegistrarPf, btnBanner, btnPerfil;
-    private EditText edtNomeCompleto, edtCPF, edtCidade,
+    private EditText edtNomeCompleto, edtCPF,
             edtEmail, edtSenha, edtConfirmarSenha,
-            edtCategoria, edtCelular, edtTelefoneFixo;
+            edtCelular, edtTelefoneFixo;
     private Prestador prestador;
     private Uri profUri, bannerUri;
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private final DatabaseReference reference = ConfigFirebase.getReference();
     private FirebaseAuth auth;
+    Dialog dialog;
+    private String experiencia = "";
+    private String cidade = "";
+    private String categoria = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +71,144 @@ public class RegistroPfActivity extends AppCompatActivity {
 
         edtNomeCompleto = findViewById(R.id.edtNomeFantasia);
         edtCPF = findViewById(R.id.edtCNPJ);
-        edtCidade = findViewById(R.id.edtCidade);
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
         edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
-        edtCategoria = findViewById(R.id.edtCategoria);
         edtCelular = findViewById(R.id.edtCelular);
         edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
+
+        //categoria
+
+        txvCategoria = findViewById(R.id.txvCategoria);
+        txvCategoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // inicia o dialog
+                dialog = new Dialog(RegistroPfActivity.this);
+
+                // define o dialog customizado
+                dialog.setContentView(R.layout.dialog_search);
+
+                // define altura e largura
+                dialog.getWindow().setLayout(650,800);
+
+                // define o background tranparente
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // exibe o dialog
+                dialog.show();
+
+                // inicializa as variaveis dos componentes do dialog
+                EditText editText=dialog.findViewById(R.id.edit_text);
+                ListView listView=dialog.findViewById(R.id.list_view);
+
+                // inicaliza o arrayadapter
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegistroPfActivity.this,
+                        R.array.services,android.R.layout.simple_list_item_1);
+
+                // seta o adapter
+                listView.setAdapter(adapter);
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //mostra a cidade selecionada no textview
+                        txvCategoria.setText(adapter.getItem(position));
+                        categoria = (String) adapter.getItem(position);
+
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        //        ---------------------------------
+        //cidade
+        txvCidade = findViewById(R.id.txvCidade);
+        txvCidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // inicia o dialog
+                dialog = new Dialog(RegistroPfActivity.this);
+
+                // define o dialog customizado
+                dialog.setContentView(R.layout.dialog_search);
+
+                // define altura e largura
+                dialog.getWindow().setLayout(650,800);
+
+                // define o background tranparente
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // exibe o dialog
+                dialog.show();
+
+                // inicializa as variaveis dos componentes do dialog
+                EditText editText=dialog.findViewById(R.id.edit_text);
+                ListView listView=dialog.findViewById(R.id.list_view);
+
+                // inicaliza o arrayadapter
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegistroPfActivity.this,
+                        R.array.cities,android.R.layout.simple_list_item_1);
+
+                // seta o adapter
+                listView.setAdapter(adapter);
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //mostra a cidade selecionada no textview
+                        txvCidade.setText(adapter.getItem(position));
+                        cidade = (String) adapter.getItem(position);
+
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        //spinner tempo de experiência
+        Spinner spinExp = findViewById(R.id.spinExp);
+        ArrayAdapter<CharSequence> adapterExp = ArrayAdapter.createFromResource(this,
+                R.array.experience, android.R.layout.simple_spinner_item);
+
+        adapterExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinExp.setAdapter(adapterExp);
+        spinExp.setOnItemSelectedListener(this);
+
+        //        ---------------------------------
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,27 +292,23 @@ public class RegistroPfActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                 }
-
             }
         });
-
     }
 
     public void btnCadastrar(View v) {
 
         String nome = edtNomeCompleto.getText().toString();
         String cpf = edtCPF.getText().toString();
-        String cidade = edtCidade.getText().toString();
         String email = edtEmail.getText().toString();
         String senha = edtSenha.getText().toString();
         String senhaConfirmar = edtConfirmarSenha.getText().toString();
-        String categoria = edtCategoria.getText().toString();
         String celular = edtCelular.getText().toString();
         String telefone = edtTelefoneFixo.getText().toString();
 
         if (nome.isEmpty() || cidade.isEmpty() ||
                 email.isEmpty() || senha.isEmpty() || senhaConfirmar.isEmpty() ||
-                categoria.isEmpty() || celular.isEmpty() || cpf.isEmpty()){
+                categoria.isEmpty() || experiencia.isEmpty() || celular.isEmpty() || cpf.isEmpty()){
 
             Toast.makeText(RegistroPfActivity.this,
                     "Preencha os campos corretamente",
@@ -189,6 +331,7 @@ public class RegistroPfActivity extends AppCompatActivity {
                 prestador.setEmail(email);
                 prestador.setSenha(senha);
                 prestador.setCategoria(categoria);
+                prestador.setAno_experiencia(experiencia);
                 prestador.setCelular(celular);
                 prestador.setTelefone(telefone);
                 prestador.setTipo("pf");
@@ -226,10 +369,27 @@ public class RegistroPfActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         pd.dismiss();
-//                        Toast.makeText(RegistroPjActivity.this, "Imagem selecionada",
-//                                Toast.LENGTH_SHORT).show();
 
-//                        prestador.setImg_perfil(taskSnapshot.getStorage().getDownloadUrl().getResult().toString());
+                        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                DatabaseReference profUrl = reference.child("prestadores").child(userId).
+                                        child("img_perfil");
+                                profUrl.setValue(uri.toString());
+                            }
+                        });
+
+//                        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                imageStore = reference.child("prestadores").child(userId).child("img_perfil");
+//                                String newUri = uri.toString();
+//                                HashMap<String,Object> data = new HashMap<>();
+//                                data.put("myImg", String.valueOf(newUri));
+//
+//                                imageStore.setValue(data);
+//                            }
+//                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -266,4 +426,15 @@ public class RegistroPfActivity extends AppCompatActivity {
                     }
                 });
             }
-        }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        experiencia  = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+}

@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/BtnAjuda"
@@ -112,7 +112,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtCidade" />
+            app:layout_constraintTop_toBottomOf="@+id/txvCidade" />
 
         <TextView
             android:id="@+id/textView19"
@@ -142,7 +142,7 @@
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="16dp"
             android:text="Categoria"
             android:textColor="@color/grey"
             android:textSize="18sp"
@@ -160,7 +160,7 @@
             android:textSize="18sp"
             android:layout_marginStart="45dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtCategoria" />
+            app:layout_constraintTop_toBottomOf="@+id/spinExp" />
 
         <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/edtCNPJ"
@@ -180,8 +180,9 @@
             app:mask="___.___.___/____-__"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/edtCidade"
+        <TextView
+            android:id="@+id/txvCidade"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -189,7 +190,6 @@
             android:layout_marginEnd="44dp"
             android:background="@drawable/et_login"
             android:ems="10"
-            android:inputType="text"
             android:padding="10dp"
             android:textColor="@color/grey"
             android:textColorHint="@color/grey"
@@ -225,7 +225,7 @@
             android:layout_marginEnd="44dp"
             android:background="@drawable/et_login"
             android:ems="10"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/grey"
             android:textColorHint="@color/grey"
@@ -279,8 +279,40 @@
             app:layout_constraintStart_toEndOf="@+id/textView25"
             app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
-        <EditText
-            android:id="@+id/edtCategoria"
+        <TextView
+            android:id="@+id/txvCategoria"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="44dp"
+            android:background="@drawable/et_login"
+            android:ems="10"
+            android:padding="10dp"
+            android:textColor="@color/grey"
+            android:textColorHint="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tempo de experiência"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:layout_marginStart="45dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvCategoria" />
+
+        <Spinner
+            android:id="@+id/spinExp"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -295,7 +327,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView38"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.santalu.maskara.widget.MaskEditText
@@ -315,7 +347,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView22"
             tools:ignore="SpeakableTextPresentCheck"
             android:layout_marginTop="5dp"
-            app:mask="(__)________"/>
+            app:mask="(__)__________"/>
 
         <TextView
             android:id="@+id/textView23"

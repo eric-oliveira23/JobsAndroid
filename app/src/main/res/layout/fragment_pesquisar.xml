@@ -16,20 +16,19 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.SearchView
+        android:theme="@style/ThemeOverlay.SearchView"
+        android:id="@+id/searchView"
+        app:defaultQueryHint="Digite o nome do prestador"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/edt_search"
-        android:drawableEnd="@drawable/ic_baseline_search_24"
-        android:ems="10"
-        android:hint="Pesquisar"
-        android:inputType="text"
-        android:textColorHint="@color/grey"
-        android:textColor="@color/black"
+        android:ems="20"
+        app:searchIcon="@drawable/ic_baseline_search_24"
+        app:closeIcon="@drawable/ic_baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,63 +45,73 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/searching" />
 
-    <TextView
-        android:id="@+id/textView42"
-        android:layout_width="wrap_content"
+<!--    <TextView-->
+<!--        android:id="@+id/txvSugestoes"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="48dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="Sugestões de pesquisa:"-->
+<!--        android:textColor="@color/grey"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/animationView" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btnEletricista"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:layout_marginStart="48dp"-->
+<!--        android:background="@drawable/btn_search"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="Eletricista"-->
+<!--        android:textSize="15dp"-->
+<!--        android:textColor="@color/grey"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/btnMarceneiro"-->
+<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txvSugestoes" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btnMarceneiro"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:background="@drawable/btn_search"-->
+<!--        android:padding="5dp"-->
+<!--        android:textSize="15dp"-->
+<!--        android:text="Marceneiro"-->
+<!--        android:textColor="@color/grey"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/btnEncanador"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnEletricista"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txvSugestoes" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btnEncanador"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:background="@drawable/btn_search"-->
+<!--        android:padding="5dp"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:text="Encanador"-->
+<!--        android:textColor="@color/grey"-->
+<!--        android:textSize="15dp"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnMarceneiro"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txvSugestoes" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Sugestões de pesquisa:"
-        android:textColor="@color/grey"
-        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/btn_search"
-        android:padding="5dp"
-        android:text="Eletricista"
-        android:textSize="15dp"
-        android:textColor="@color/grey"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/btn_search"
-        android:padding="5dp"
-        android:textSize="15dp"
-        android:text="Marceneiro"
-        android:textColor="@color/grey"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButton3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/appCompatButton2"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/btn_search"
-        android:padding="5dp"
-        android:layout_marginStart="15dp"
-        android:text="Encanador"
-        android:textColor="@color/grey"
-        android:textSize="15dp"
-        app:layout_constraintStart_toEndOf="@+id/appCompatButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+        app:layout_constraintTop_toBottomOf="@+id/textView30"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

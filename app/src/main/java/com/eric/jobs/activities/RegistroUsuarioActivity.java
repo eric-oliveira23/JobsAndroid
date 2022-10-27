@@ -36,7 +36,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         edtNomeCompleto = findViewById(R.id.edtNomeFantasia);
         edtEmail = findViewById(R.id.edtCNPJ);
-        edtCidade = findViewById(R.id.edtCidade);
+        edtCidade = findViewById(R.id.txvCidade);
         edtSenhaUsuario = findViewById(R.id.edtEmail);
         edtConfirmarSenha = findViewById(R.id.edtSenha);
     }
