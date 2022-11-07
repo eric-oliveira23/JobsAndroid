@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.eric.jobs.R;
 import com.eric.jobs.model.Prestador;
-import com.eric.jobs.model.Servico;
 
 import java.util.List;
 
@@ -22,10 +21,12 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
 
     List<Prestador> prestadors;
     Context context;
+    private RecyclerViewClickListener listener;
 
-    public ServicoAdapter(List<Prestador> servicoList, FragmentActivity activity) {
+    public ServicoAdapter(List<Prestador> servicoList, FragmentActivity activity, RecyclerViewClickListener listener) {
         this.prestadors = servicoList;
         this.context = activity;
+        this.listener = listener;
     }
 
     public void setFilteredList(List<Prestador> filteredList){
@@ -58,12 +59,16 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
         return prestadors.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public Prestador getItem (int position) {
+        return prestadors.get(position);
+    }
 
-        private TextView tituloServico;
-        private TextView categoriaServico;
-        private TextView cidadeServico;
-        private ImageView imgServico;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private final TextView tituloServico;
+        private final TextView categoriaServico;
+        private final TextView cidadeServico;
+        private final ImageView imgServico;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +77,17 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
             categoriaServico = itemView.findViewById(R.id.categoriaServico);
             cidadeServico = itemView.findViewById(R.id.cidadeServico);
             imgServico = itemView.findViewById(R.id.imgServico);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(itemView, getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewClickListener{
+        void onClick(View view, int position);
     }
 
 }

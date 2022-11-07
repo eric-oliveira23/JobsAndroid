@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
+    <TextView
         android:id="@+id/txvCidade"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -166,7 +166,7 @@
         android:layout_marginEnd="44dp"
         android:background="@drawable/et_login"
         android:ems="10"
-        android:inputType="text"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_purple_24"
         android:padding="10dp"
         android:textColor="@color/grey"
         android:textColorHint="@color/grey"
@@ -215,12 +215,11 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnRegistrarPf"
+        android:id="@+id/btnRegistrarUser"
         android:layout_width="175dp"
         android:layout_height="45dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/btn_rounded_purple"
-        android:onClick="btnLogin"
         android:text="Cadastrar"
         android:textAllCaps="false"
         android:textColor="@color/purple_light"

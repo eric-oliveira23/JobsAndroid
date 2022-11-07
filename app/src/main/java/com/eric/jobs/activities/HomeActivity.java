@@ -8,8 +8,13 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eric.jobs.adapter.MyViewPagerAdapter;
 import com.eric.jobs.R;
 import com.google.android.material.tabs.TabLayout;
@@ -17,19 +22,28 @@ import com.google.android.material.tabs.TabLayout;
 public class HomeActivity extends AppCompatActivity {
 
     private boolean doubleBackPressed = false;
+    private Animation main;
+    private TabLayout tabLayout;
+    private boolean loaded = false;
+    TextView txvLoading;
+    private LottieAnimationView animLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TabLayout tabLayout;
+        txvLoading = findViewById(R.id.txvLoading);
+        animLoading = findViewById(R.id.animLoading);
+
+        main = AnimationUtils.loadAnimation(this, R.anim.anim_home);
+        tabLayout = findViewById(R.id.tabLayout);
+
         ViewPager2 viewPager2;
         MyViewPagerAdapter myViewPagerAdapter;
 
         //configuração fragments
 
-        tabLayout = findViewById(R.id.tabLayout);
         viewPager2 = findViewById(R.id.view_pager);
         myViewPagerAdapter = new MyViewPagerAdapter(this);
         viewPager2.setAdapter(myViewPagerAdapter);
@@ -64,20 +78,6 @@ public class HomeActivity extends AppCompatActivity {
 
         //desativa slide entre fragments
         viewPager2.setUserInputEnabled(false);
-
-       /* FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
-                getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("Home", HomeFragment.class)
-                .add("Pesquisar", PesquisarFragment.class)
-                .add("Meu Perfil", PerfilFragment.class)
-                .create());
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(adapter);
-
-        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
-        viewPagerTab.setViewPager(viewPager);*/
-
     }
 
     @Override
@@ -98,5 +98,39 @@ public class HomeActivity extends AppCompatActivity {
                 doubleBackPressed = false;
             }
         },2000);
+    }
+
+    public void hideViews(){
+        animLoading.setVisibility(View.GONE);
+        txvLoading.setVisibility(View.GONE);
+    }
+
+    public void showViews(){
+        animLoading.setVisibility(View.VISIBLE);
+        txvLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        txvLoading = findViewById(R.id.txvLoading);
+        animLoading = findViewById(R.id.animLoading);
+
+        main = AnimationUtils.loadAnimation(this, R.anim.anim_home);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        if (!loaded) {
+            showViews();
+            tabLayout.setVisibility(View.INVISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    tabLayout.setVisibility(View.VISIBLE);
+                    hideViews();
+                    tabLayout.startAnimation(main);
+                    loaded = true;
+                }
+            }, 2000);
+        }
     }
 }

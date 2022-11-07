@@ -3,10 +3,20 @@ package com.eric.jobs.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
@@ -26,8 +36,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Usuario usuario;
     private EditText edtNomeCompleto, edtEmail,
-            edtCidade, edtSenhaUsuario,
-            edtConfirmarSenha;
+            edtSenhaUsuario, edtConfirmarSenha;
+    private Dialog dialog;
+    private TextView txvCidade;
+    String cidade;
+    private Button btnRegistrarUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +49,106 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         edtNomeCompleto = findViewById(R.id.edtNomeFantasia);
         edtEmail = findViewById(R.id.edtCNPJ);
-        edtCidade = findViewById(R.id.txvCidade);
         edtSenhaUsuario = findViewById(R.id.edtEmail);
         edtConfirmarSenha = findViewById(R.id.edtSenha);
-    }
+        txvCidade = findViewById(R.id.txvCidade);
+        btnRegistrarUser = findViewById(R.id.btnRegistrarUser);
 
-    public void btnLogin(View view){
+        txvCidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // inicia o dialog
+                dialog = new Dialog(RegistroUsuarioActivity.this);
 
-        String nome = edtNomeCompleto.getText().toString();
-        String email = edtEmail.getText().toString();
-        String cidade = edtCidade.getText().toString();
-        String senha = edtSenhaUsuario.getText().toString();
-        String confirmarSenha = edtConfirmarSenha.getText().toString();
+                // define o dialog customizado
+                dialog.setContentView(R.layout.dialog_search);
 
-       if (nome.isEmpty() || email.isEmpty() ||
-               cidade.isEmpty() || senha.isEmpty() ||
-               confirmarSenha.isEmpty()){
+                // define altura e largura
+                dialog.getWindow().setLayout(650,800);
 
-           Toast.makeText(this,
-                   "Preencha os campos corretamente!",
-                   Toast.LENGTH_SHORT).show();
-       }
-       else{
-                if (!senha.equals(confirmarSenha)){
-                    Toast.makeText(this,
-                            "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
+                // define o background tranparente
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // exibe o dialog
+                dialog.show();
+
+                // inicializa as variaveis dos componentes do dialog
+                EditText editText=dialog.findViewById(R.id.edit_text);
+                ListView listView=dialog.findViewById(R.id.list_view);
+
+                // inicaliza o arrayadapter
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegistroUsuarioActivity.this,
+                        R.array.cities,android.R.layout.simple_list_item_1);
+
+                // seta o adapter
+                listView.setAdapter(adapter);
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //mostra a categoria selecionada no textview
+                        txvCidade.setText(adapter.getItem(position));
+                        cidade = (String) adapter.getItem(position);
+
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        btnRegistrarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String nome = edtNomeCompleto.getText().toString();
+                String email = edtEmail.getText().toString();
+                String cidade = txvCidade.getText().toString();
+                String senha = edtSenhaUsuario.getText().toString();
+                String confirmarSenha = edtConfirmarSenha.getText().toString();
+
+                if (nome.isEmpty() || email.isEmpty() ||
+                        cidade.isEmpty() || senha.isEmpty() ||
+                        confirmarSenha.isEmpty()){
+
+                    Toast.makeText(getApplicationContext(),
+                            "Preencha os campos corretamente!",
+                            Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    if (!senha.equals(confirmarSenha)){
+                        Toast.makeText(getApplicationContext(),
+                                "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
+                    }
 
-           else{
+                    else{
 
-               usuario = new Usuario();
-               usuario.setNome(nome);
-               usuario.setEmail(email);
-               usuario.setCidade(cidade);
-               usuario.setSenha(senha);
+                        usuario = new Usuario();
+                        usuario.setNome(nome);
+                        usuario.setEmail(email);
+                        usuario.setCidade(cidade);
+                        usuario.setSenha(senha);
 
-               cadastrarUser();
-           }
-       }
+                        cadastrarUser();
 
-    }
+                    }
+            }
+        }
 
     public void cadastrarUser(){
 
@@ -114,8 +187,9 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                             excecao,
                             Toast.LENGTH_SHORT).show();
 
-                }
-
+                        }
+                    }
+                });
             }
         });
     }

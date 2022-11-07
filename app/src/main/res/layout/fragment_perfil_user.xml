@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSettings"
+            android:id="@+id/btnSettingsUser"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"

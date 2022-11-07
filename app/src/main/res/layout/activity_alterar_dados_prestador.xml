@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
+        android:text="Alterar"
+        android:textColor="@color/purple_primary"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="dados da conta"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Nome Fantasia"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <EditText
+        android:id="@+id/edtNomeAlterar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
+        android:text="Cidade"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/edtNomeAlterar"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <TextView
+        android:id="@+id/txvCidade"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        tools:ignore="SpeakableTextPresentCheck"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_purple_24"/>
+
+    <TextView
+        android:id="@+id/txvCategoria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_purple_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:text="Categoria"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvCidade" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tempo de experiência"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvCategoria" />
+
+    <Spinner
+        android:id="@+id/spinExp"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView38"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Celular"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinExp" />
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/edtCelular"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="13"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginTop="5dp"
+        app:mask="(__)__________"/>
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:text="Telefone Fixo"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTelefoneFixo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCelular" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(não obrigatório)"
+        android:textColor="@color/purple_primary"
+        android:textSize="13sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
+        app:layout_constraintStart_toEndOf="@id/textView23" />
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/edtTelefoneFixo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        tools:ignore="SpeakableTextPresentCheck"
+        app:mask="____-_____"/>
+
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Imagem de perfil"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTelefoneFixo" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Imagem de capa"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPerfil" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPerfil"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/purple_primary"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:ems="10"
+        android:padding="10dp"
+        android:text="Selecionar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBanner"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/purple_primary"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:ems="10"
+        android:padding="10dp"
+        android:text="Selecionar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Imagem do serviço"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBanner" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnImgServico"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@color/purple_primary"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:ems="10"
+        android:padding="10dp"
+        android:text="Selecionar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAlterarDados"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/btn_rounded_purple"
+        android:text="Alterar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnImgServico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/purple_light"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@color/purple_primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAlterarDados"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

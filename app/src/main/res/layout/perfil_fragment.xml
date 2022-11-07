@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.PerfilFragmentPrestador">
+    tools:context=".fragments.PerfilFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/default_banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -115,57 +114,112 @@
         tools:layout_editor_absoluteY="417dp" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/txv22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:maxWidth="350dp"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvEndereco"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="28sp"
+        android:text="Tempo de experiência"
+        />
+
+    <TextView
+        android:id="@+id/txvTempoExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="350dp"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv22"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="28sp"
+        android:text="Mais de 10 anos"
+        />
+
+    <TextView
+        android:id="@+id/txvServicosPrestados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:text="Serviços Prestados"
         android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/txvTempoExp"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="410dp" />
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/sliderServicos"
+    <ImageView
+        android:id="@+id/imgServicos"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        app:auto_cycle="true"
-        app:corner_radius="0"
-        app:delay="0"
-        app:error_image="@color/purple_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView35"
-        app:period="2500"
-        app:placeholder="@color/black" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/ic_baseline_circle_black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sliderServicos" />
-
-    <TextView
-        android:id="@+id/txvCategoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="300dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Manutenção de antenas e segurança eletrônica em geral"
-        android:textSize="17sp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/sliderServicos" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvServicosPrestados"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:id="@+id/linearCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgServicos"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_primary"
+            android:padding="7dp"
+            android:gravity="center">
+
+        <TextView
+            android:id="@+id/txvDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalhes"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearTextoCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:background="@drawable/linear_details">
+
+        <TextView
+            android:id="@+id/txvCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="8dp"
+            android:maxWidth="300dp"
+            android:text="Manutenção de antenas e segurança eletrônica em geral"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView10"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:textAlignment="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogout"
@@ -181,9 +235,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvCategoria"
-        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearCategoria"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSettingsPrestador"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/edt_search"
+        android:drawableStart="@drawable/ic_baseline_settings_24"
+        android:padding="15dp"
+        android:text="Configurações"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,33 +264,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btnFavs"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="70dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:background="@drawable/edt_search"-->
+<!--                android:drawableLeft="@drawable/heart"-->
+<!--                android:padding="15dp"-->
+<!--                android:text="Favoritos"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="17sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFavs"
+                android:id="@+id/btnSettingsUser"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/edt_search"
-                android:drawableLeft="@drawable/heart"
-                android:padding="15dp"
-                android:text="Favoritos"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSettings"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/edt_search"
-                android:drawableLeft="@drawable/ic_baseline_settings_24"
+                android:drawableStart="@drawable/ic_baseline_settings_24"
                 android:padding="15dp"
                 android:text="Configurações"
                 android:textAllCaps="false"
@@ -226,7 +298,7 @@
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnFavs" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogoutUser"
@@ -240,7 +312,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@+id/btnSettings"
+                app:layout_constraintTop_toBottomOf="@+id/btnSettingsUser"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

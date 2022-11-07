@@ -231,7 +231,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView17"
-                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_purple_24"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
@@ -333,7 +333,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView21"
                     tools:ignore="SpeakableTextPresentCheck"
-                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_purple_24" />
 
                 <com.santalu.maskara.widget.MaskEditText
                     android:id="@+id/edtCelular"
@@ -467,6 +467,40 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="100dp"
+                    android:text="Imagem do serviço"
+                    android:textColor="@color/grey"
+                    android:textSize="16sp"
+                    android:layout_marginStart="45dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnBanner" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnImgServico"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="44dp"
+                    android:background="@color/purple_primary"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:text="Selecionar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
                     android:id="@+id/btnLogar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -495,7 +529,7 @@
                     android:textColor="@color/purple_light"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnBanner" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnImgServico" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

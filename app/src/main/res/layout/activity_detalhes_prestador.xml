@@ -1,0 +1,228 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.PerfilFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintPrestador"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="150dp"
+                android:elevation="50dp"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/default_profile" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txvNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:text="Carregando..."
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="Informações"
+                android:textSize="17sp"
+                app:layout_constraintTop_toBottomOf="@+id/txvNome"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="410dp" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_phone_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+            <TextView
+                android:id="@+id/txvCelular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView32"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8sp"
+                android:text="Carregando..." />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvCelular" />
+
+            <TextView
+                android:id="@+id/txvEndereco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="350dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/txvCelular"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="8sp"
+                android:text="Carregando..."
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="417dp" />
+
+            <TextView
+                android:id="@+id/txv22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="350dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvEndereco"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="28sp"
+                android:text="Tempo de experiência"
+                />
+
+            <TextView
+                android:id="@+id/txvTempoExp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="350dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txv22"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="28sp"
+                android:text="Mais de 10 anos"
+                />
+
+            <TextView
+                android:id="@+id/txvServicosPrestados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:text="Serviços Prestados"
+                android:textSize="17sp"
+                app:layout_constraintTop_toBottomOf="@+id/txvTempoExp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="410dp" />
+
+            <ImageView
+                android:id="@+id/imgServicos"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvServicosPrestados" />
+
+            <LinearLayout
+                android:id="@+id/linearCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="50dp"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgServicos">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/purple_primary"
+                    android:gravity="center"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:id="@+id/txvDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        android:text="Detalhes"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearTextoCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:background="@drawable/linear_details">
+
+                    <TextView
+                        android:id="@+id/txvCategoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_marginTop="8dp"
+                        android:maxWidth="300dp"
+                        android:text="Manutenção de antenas e segurança eletrônica em geral"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/imageView10"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
+

@@ -42,15 +42,17 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Objects;
+
 public class RegistroPfActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView btnLogar, txvCategoria, txvCidade;
-    private Button btnRegistrarPf, btnBanner, btnPerfil;
+    private TextView txvCategoria;
+    private TextView txvCidade;
     private EditText edtNomeCompleto, edtCPF,
             edtEmail, edtSenha, edtConfirmarSenha,
             edtCelular, edtTelefoneFixo;
     private Prestador prestador;
-    private Uri profUri, bannerUri;
+    private Uri profUri, bannerUri, servicoUri;
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private final DatabaseReference reference = ConfigFirebase.getReference();
     private FirebaseAuth auth;
@@ -64,10 +66,11 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_pf);
 
-        btnLogar = findViewById(R.id.btnLogar);
-        btnRegistrarPf = findViewById(R.id.btnRegistrarPf);
-        btnBanner = findViewById(R.id.btnBanner);
-        btnPerfil = findViewById(R.id.btnPerfil);
+        TextView btnLogar = findViewById(R.id.btnLogar);
+        Button btnRegistrarPf = findViewById(R.id.btnRegistrarPf);
+        Button btnBanner = findViewById(R.id.btnBanner);
+        Button btnPerfil = findViewById(R.id.btnPerfil);
+        Button btnImgServico = findViewById(R.id.btnImgServico);
 
         edtNomeCompleto = findViewById(R.id.edtNomeFantasia);
         edtCPF = findViewById(R.id.edtCNPJ);
@@ -128,7 +131,7 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //mostra a cidade selecionada no textview
+                        //mostra a categoria selecionada no textview
                         txvCategoria.setText(adapter.getItem(position));
                         categoria = (String) adapter.getItem(position);
 
@@ -218,6 +221,8 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+        //imagens
+
         btnPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,6 +240,16 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(intent, 2);
+            }
+        });
+
+        btnImgServico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, 3);
             }
         });
 
@@ -265,6 +280,12 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                         Toast.makeText(getApplicationContext(),
                                 "Você pode escolher uma foto de capa mais tarde", Toast.LENGTH_SHORT).show();
                     }
+                    try{
+                        uploadImgServico();
+                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(),
+                                "Você pode escolher uma foto do serviço mais tarde", Toast.LENGTH_SHORT).show();
+                    }
 
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
@@ -274,7 +295,7 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
 
                     String excecao;
                     try{
-                        throw task.getException();
+                        throw Objects.requireNonNull(task.getException());
                     }
                     catch (FirebaseAuthWeakPasswordException e){
                         excecao = "Digite uma senha mais forte!";
@@ -350,6 +371,9 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         else if (requestCode==2 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
             bannerUri = data.getData();
         }
+        else if (requestCode==3 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+            servicoUri = data.getData();
+        }
     }
 
     private void uploadPic(){
@@ -378,18 +402,6 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                                 profUrl.setValue(uri.toString());
                             }
                         });
-
-//                        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                imageStore = reference.child("prestadores").child(userId).child("img_perfil");
-//                                String newUri = uri.toString();
-//                                HashMap<String,Object> data = new HashMap<>();
-//                                data.put("myImg", String.valueOf(newUri));
-//
-//                                imageStore.setValue(data);
-//                            }
-//                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -418,14 +430,58 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         StorageReference bannerRef = storageReference.child("images/banner/"+userId+"bp");
 
         bannerRef.putFile(bannerUri)
-                .addOnFailureListener(new OnFailureListener() {
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RegistroPfActivity.this,
-                                "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        bannerRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        DatabaseReference profUrl = reference.child("prestadores").child(userId).
+                                                child("img_capa");
+                                        profUrl.setValue(uri.toString());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(RegistroPfActivity.this,
+                                                "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
                     }
-                });
-            }
+
+    private void uploadImgServico(){
+
+        auth = ConfigFirebase.getAutenticacao();
+        String userEmail = prestador.getEmail();
+        String userId = Base64Custom.codificarBase64(userEmail);
+
+        StorageReference imgServicoRef = storageReference.child("images/pic_servico/"+userId);
+
+        imgServicoRef.putFile(servicoUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        imgServicoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        DatabaseReference profUrl = reference.child("prestadores").child(userId).
+                                                child("img_servico");
+                                        profUrl.setValue(uri.toString());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(RegistroPfActivity.this,
+                                                "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                    }
 
 
     @Override

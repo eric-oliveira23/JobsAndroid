@@ -24,46 +24,48 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
-import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Prestador;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.eric.jobs.services.ConfigFirebase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.Objects;
-
-public class RegistroPjActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AlterarDadosPrestadorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView txvCategoria, txvCidade;
-    private EditText edtNomeFantasia, edtCNPJ,
-            edtEmail, edtSenha, edtConfirmarSenha,
-             edtCelular, edtTelefoneFixo;
+    EditText edtNomeAlterar, edtCelular, edtTelefoneFixo;
+    Dialog dialog;
+    String categoria = "";
+    String experiencia = "";
+    String cidade = "";
     private Prestador prestador;
     private FirebaseAuth auth;
     private Uri profUri, bannerUri, servicoUri;
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private final DatabaseReference reference = ConfigFirebase.getReference();
-    Dialog dialog;
-    private String experiencia = "";
-    private String cidade = "";
-    private String categoria = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_pj);
+        setContentView(R.layout.activity_alterar_dados_prestador);
+
+        edtNomeAlterar = findViewById(R.id.edtNomeAlterar);
+        edtCelular = findViewById(R.id.edtCelular);
+        edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
+
+        Button btnAlterarDados = findViewById(R.id.btnAlterarDados);
+        btnAlterarDados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateData();
+            }
+        });
 
         //categoria
 
@@ -72,7 +74,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View view) {
                 // inicia o dialog
-                dialog = new Dialog(RegistroPjActivity.this);
+                dialog = new Dialog(AlterarDadosPrestadorActivity.this);
 
                 // define o dialog customizado
                 dialog.setContentView(R.layout.dialog_search);
@@ -91,7 +93,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 ListView listView=dialog.findViewById(R.id.list_view);
 
                 // inicaliza o arrayadapter
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegistroPjActivity.this,
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AlterarDadosPrestadorActivity.this,
                         R.array.services,android.R.layout.simple_list_item_1);
 
                 // seta o adapter
@@ -116,7 +118,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //mostra a categoria selecionada no textview
+                        //mostra a cidade selecionada no textview
                         txvCategoria.setText(adapter.getItem(position));
                         categoria = (String) adapter.getItem(position);
 
@@ -133,7 +135,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View view) {
                 // inicia o dialog
-                dialog = new Dialog(RegistroPjActivity.this);
+                dialog = new Dialog(AlterarDadosPrestadorActivity.this);
 
                 // define o dialog customizado
                 dialog.setContentView(R.layout.dialog_search);
@@ -152,7 +154,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 ListView listView=dialog.findViewById(R.id.list_view);
 
                 // inicializa o arrayadapter
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegistroPjActivity.this,
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AlterarDadosPrestadorActivity.this,
                         R.array.cities,android.R.layout.simple_list_item_1);
 
                 // seta o adapter
@@ -196,11 +198,11 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
         spinExp.setAdapter(adapterExp);
         spinExp.setOnItemSelectedListener(this);
 
-        //        ---------------------------------
-
         Button btnPerfil = findViewById(R.id.btnPerfil);
         Button btnBanner = findViewById(R.id.btnBanner);
         Button btnImgServico = findViewById(R.id.btnImgServico);
+
+//        ------------------------------------------------------
 
         btnPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,165 +233,25 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 startActivityForResult(intent, 3);
             }
         });
-
-        TextView btnLogar = findViewById(R.id.btnLogar);
-
-        btnLogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        edtNomeFantasia = findViewById(R.id.edtNomeFantasia);
-        edtCNPJ = findViewById(R.id.edtCNPJ);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtSenha = findViewById(R.id.edtSenha);
-        edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
-        edtCelular = findViewById(R.id.edtCelular);
-        edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
-
-        btnLogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void cadastrarPrestador(){
-
-        auth = ConfigFirebase.getAutenticacao();
-        auth.createUserWithEmailAndPassword(
-                prestador.getEmail(), prestador.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-
-                    String idUser = Base64Custom.codificarBase64(prestador.getEmail());
-                    prestador.setIdUser(idUser);
-                    prestador.salvarPrestador();
-
-                    try {
-                        uploadPic();
-                    }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),
-                                "Você pode escolher uma foto de perfil mais tarde", Toast.LENGTH_SHORT).show();
-                    }
-                    try{
-                        uploadBanner();
-                    }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),
-                                "Você pode escolher uma foto de capa mais tarde", Toast.LENGTH_SHORT).show();
-                    }
-                    try{
-                        uploadImgServico();
-                    }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),
-                                "Você pode escolher uma foto do serviço mais tarde", Toast.LENGTH_SHORT).show();
-                    }
-
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                }
-
-                else{
-                    String excecao;
-                    try{
-                        throw Objects.requireNonNull(task.getException());
-                    }
-                    catch (FirebaseAuthWeakPasswordException e){
-                        excecao = "Digite uma senha mais forte!";
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        excecao = "Digite um email válido";
-                    }catch (FirebaseAuthUserCollisionException e) {
-                        excecao = "Esse email já está sendo utilizado por outra pessoa!";
-                    } catch (Exception e) {
-                        excecao = "Erro ao cadastrar usuário! "+e.getMessage();
-                        e.printStackTrace();
-                    }
-
-                    Toast.makeText(getApplicationContext(),
-                            excecao,
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    public void btnCadastrar(View v) {
-
-        String nome = edtNomeFantasia.getText().toString();
-        String cnpj = edtCNPJ.getText().toString();
-        String email = edtEmail.getText().toString();
-        String senha = edtSenha.getText().toString();
-        String senhaConfirmar = edtConfirmarSenha.getText().toString();
-        String celular = edtCelular.getText().toString();
-        String telefone = edtTelefoneFixo.getText().toString();
-
-        if (nome.isEmpty() || cidade.isEmpty() ||
-                email.isEmpty() || senha.isEmpty() || senhaConfirmar.isEmpty() ||
-                categoria.isEmpty() || experiencia.isEmpty() || celular.isEmpty() || cnpj.isEmpty()){
-
-            Toast.makeText(RegistroPjActivity.this,
-                    "Preencha os campos corretamente",
-                    Toast.LENGTH_SHORT).show();
-
-        }
-        else {
-
-            if (!senha.equals(senhaConfirmar)) {
-                Toast.makeText(RegistroPjActivity.this,
-                        "As senhas não coincidem!",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            else{
-
-                prestador = new Prestador();
-                prestador.setNome(nome);
-                prestador.setDocumento(cnpj);
-                prestador.setCidade(cidade);
-                prestador.setEmail(email);
-                prestador.setSenha(senha);
-                prestador.setCategoria(categoria);
-                prestador.setAno_experiencia(experiencia);
-                prestador.setCelular(celular);
-                prestador.setTelefone(telefone);
-                prestador.setTipo("pj");
-
-                cadastrarPrestador();
-
-            }
-        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-                profUri = data.getData();
-            }
+            profUri = data.getData();
+        }
         else if (requestCode==2 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-                bannerUri = data.getData();
+            bannerUri = data.getData();
         }
         else if (requestCode==3 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-                servicoUri = data.getData();
+            servicoUri = data.getData();
         }
     }
 
-
     private void uploadPic(){
 
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Carregando...");
-        pd.show();
-
-        auth = ConfigFirebase.getAutenticacao();
-        String userEmail = prestador.getEmail();
-        String userId = Base64Custom.codificarBase64(userEmail);
+        String userId = getUserId();
 
         StorageReference profileRef = storageReference.child("images/profile/"+userId+"pp");
 
@@ -397,7 +259,6 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        pd.dismiss();
                         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -411,25 +272,15 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
-                        Toast.makeText(RegistroPjActivity.this,
+                        Toast.makeText(AlterarDadosPrestadorActivity.this,
                                 "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
                     }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double progressStatus = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        pd.setMessage("Progresso: "+ (int)progressStatus+"%");
-                    }
                 });
-            }
+    }
 
     private void uploadBanner(){
 
-        auth = ConfigFirebase.getAutenticacao();
-        String userEmail = prestador.getEmail();
-        String userId = Base64Custom.codificarBase64(userEmail);
+        String userId = getUserId();
 
         StorageReference bannerRef = storageReference.child("images/banner/"+userId+"bp");
 
@@ -440,9 +291,9 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                         bannerRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                DatabaseReference profUrl = reference.child("prestadores").child(userId).
+                                DatabaseReference bannerUrl = reference.child("prestadores").child(userId).
                                         child("img_capa");
-                                profUrl.setValue(uri.toString());
+                                bannerUrl.setValue(uri.toString());
                             }
                         });
                     }
@@ -450,17 +301,15 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RegistroPjActivity.this,
+                        Toast.makeText(AlterarDadosPrestadorActivity.this,
                                 "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
+    }
 
     private void uploadImgServico(){
 
-        auth = ConfigFirebase.getAutenticacao();
-        String userEmail = prestador.getEmail();
-        String userId = Base64Custom.codificarBase64(userEmail);
+        String userId = getUserId();
 
         StorageReference imgServicoRef = storageReference.child("images/pic_servico/"+userId);
 
@@ -471,20 +320,113 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                         imgServicoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        DatabaseReference profUrl = reference.child("prestadores").child(userId).
+                                        DatabaseReference imgServicoUrl = reference.child("prestadores").child(userId).
                                                 child("img_servico");
-                                        profUrl.setValue(uri.toString());
+                                        imgServicoUrl.setValue(uri.toString());
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RegistroPjActivity.this,
+                                        Toast.makeText(AlterarDadosPrestadorActivity.this,
                                                 "Erro ao selecionar imagem", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                    }
+                        }
                 });
+    }
+
+    public void updateData(){
+
+        String novoNome = edtNomeAlterar.getText().toString();
+        String novaCidade = txvCidade.getText().toString();
+        String novoCelular = edtCelular.getText().toString();
+        String novoTelefone = edtTelefoneFixo.getText().toString();
+        String novaCategoria = txvCategoria.getText().toString();
+
+        if (novoNome.isEmpty() && cidade.isEmpty() && categoria.isEmpty()
+                && experiencia.isEmpty() && novoCelular.isEmpty()
+                && novoTelefone.isEmpty() && profUri.equals(Uri.EMPTY) &&
+                servicoUri.equals(Uri.EMPTY) && bannerUri.equals(Uri.EMPTY)
+                && novaCategoria.isEmpty()) {
+
+            Toast.makeText(AlterarDadosPrestadorActivity.this,
+                    "Preencha ao menos um campo",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            auth = ConfigFirebase.getAutenticacao();
+            String userEmail = auth.getCurrentUser().getEmail();
+            String userId = Base64Custom.codificarBase64(userEmail);
+
+            try {
+
+                if (!novoNome.isEmpty()) {
+                    DatabaseReference newNameRef = reference.child("prestadores").child(userId).
+                            child("nome");
+                    newNameRef.setValue(novoNome);
+                }
+
+                if (!cidade.isEmpty()) {
+                    DatabaseReference newCityRef = reference.child("prestadores").child(userId).
+                            child("cidade");
+                    newCityRef.setValue(cidade);
+                }
+
+                if (!categoria.isEmpty()) {
+                    DatabaseReference newCategoryRef = reference.child("prestadores").child(userId).
+                            child("categoria");
+                    newCategoryRef.setValue(categoria);
+                }
+
+                if (!experiencia.isEmpty()) {
+                    DatabaseReference newExpRef = reference.child("prestadores").child(userId).
+                            child("ano_experiencia");
+                    newExpRef.setValue(experiencia);
+                }
+
+                if (!novoCelular.isEmpty()) {
+                    DatabaseReference newCelRef = reference.child("prestadores").child(userId).
+                            child("celular");
+                    newCelRef.setValue(novoCelular);
+                }
+
+                if (!novoTelefone.isEmpty()) {
+                    DatabaseReference newTelRef = reference.child("prestadores").child(userId).
+                            child("telefone");
+                    newTelRef.setValue(novoTelefone);
+                }
+
+                if (profUri != null){
+                    uploadPic();
+                }
+
+                if (bannerUri != null){
+                    uploadBanner();
+                }
+
+                if (servicoUri != null){
+                    uploadImgServico();
+                }
+
+                Toast.makeText(AlterarDadosPrestadorActivity.this,
+                        "Dados alterados.",
+                        Toast.LENGTH_SHORT).show();
+
+                finish();
+            }
+
+            catch (Exception ignored){}
+
+        }
+    }
+
+    public String getUserId(){
+        auth = ConfigFirebase.getAutenticacao();
+        String userEmail = auth.getCurrentUser().getEmail();
+        String userId = Base64Custom.codificarBase64(userEmail);
+        return userId;
     }
 
     @Override
@@ -492,8 +434,10 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
         experiencia  = adapterView.getItemAtPosition(i).toString();
     }
 
+
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

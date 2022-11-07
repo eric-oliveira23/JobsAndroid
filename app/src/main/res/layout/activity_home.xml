@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.HomeActivity">
+    tools:context=".activities.HomeActivity"
+    android:animateLayoutChanges="true">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
@@ -43,5 +44,29 @@
             android:icon="@drawable/ic_baseline_person_24" />
 
     </com.google.android.material.tabs.TabLayout>
+
+    <TextView
+        android:id="@+id/txvLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Carregando seus dados, aguarde..."
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animLoading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvLoading"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,9 +14,10 @@ public class Prestador {
     private String senha = "";
     private String categoria = "";
     private String celular = "";
-    private String telefone = null;
+    private String telefone = "";
     private String img_perfil = "";
     private String img_capa = "";
+    private String img_servico = "";
     private String idUser = "";
     private String ano_experiencia = "";
 
@@ -37,6 +38,13 @@ public class Prestador {
         this.ano_experiencia = ano_experiencia;
     }
 
+    public String getImg_servico() {
+        return img_servico;
+    }
+
+    public void setImg_servico(String img_servico) {
+        this.img_servico = img_servico;
+    }
 
     @Exclude
     public String getIdUser() {
@@ -127,8 +135,7 @@ public class Prestador {
     public void setImg_perfil(String img_perfil) {
         this.img_perfil = img_perfil;
     }
-
-    @Exclude
+    
     public String getImg_capa() {
         return img_capa;
     }

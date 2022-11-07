@@ -1,6 +1,6 @@
 package com.eric.jobs.fragments;
 
-import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,13 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eric.jobs.R;
+import com.eric.jobs.activities.DetalhesPrestadorActivity;
 import com.eric.jobs.adapter.ServicoAdapter;
 import com.eric.jobs.model.Prestador;
 import com.eric.jobs.services.ConfigFirebase;
@@ -30,12 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PesquisarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 
 public class PesquisarFragment extends Fragment {
 
@@ -49,38 +41,15 @@ public class PesquisarFragment extends Fragment {
     private DatabaseReference reference = ConfigFirebase.getReference();
     private DatabaseReference servicosRef;
     private ValueEventListener valueEventListenerServicos;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ServicoAdapter.RecyclerViewClickListener listener;
 
     public PesquisarFragment() {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
-    public static PesquisarFragment newInstance(String param1, String param2) {
-        PesquisarFragment fragment = new PesquisarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -102,6 +71,14 @@ public class PesquisarFragment extends Fragment {
 
         searchView = view.findViewById(R.id.searchView);
         searchView.clearFocus();
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -123,10 +100,11 @@ public class PesquisarFragment extends Fragment {
         //desativa o scroll do recycler
         //recyclerServicos.setNestedScrollingEnabled(false);
 
+        setOnClickListener();
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(linearLayoutManager);
 
-        servicoAdapter = new ServicoAdapter(prestadors, getActivity());
+        servicoAdapter = new ServicoAdapter(prestadors, getActivity(), listener);
         recycler.setAdapter(servicoAdapter);
 
         recycler.setHasFixedSize(true);
@@ -135,25 +113,25 @@ public class PesquisarFragment extends Fragment {
 
     private void filterList(String text) {
         List<Prestador> filteredList = new ArrayList<>();
-        for (Prestador prestador : prestadors){
+        for (Prestador prestador : prestadors) {
             if (prestador.getNome().toLowerCase().contains(text.toLowerCase()) ||
-                    prestador.getCategoria().toLowerCase().contains(text.toLowerCase())) {
+                    prestador.getCategoria().toLowerCase().contains(text.toLowerCase()) ||
+                    prestador.getAno_experiencia().toLowerCase().contains(text.toLowerCase())) {
 
                 filteredList.add(prestador);
 
             }
         }
 
-        if (filteredList.isEmpty()){
+        if (filteredList.isEmpty()) {
             Toast.makeText(getActivity(), "Nenhum prestador encontrado.", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             servicoAdapter.setFilteredList(filteredList);
         }
 
     }
 
-    public void recuperarServicos(){
+    public void recuperarServicos() {
 
         servicosRef = reference.child("prestadores");
 
@@ -179,7 +157,7 @@ public class PesquisarFragment extends Fragment {
         });
     }
 
-    public void hideViews(){
+    public void hideViews() {
 
         animationView.setVisibility(View.GONE);
 //        txvSugestoes.setVisibility(View.GONE);
@@ -189,4 +167,24 @@ public class PesquisarFragment extends Fragment {
 
     }
 
+    public void setOnClickListener() {
+        listener = new ServicoAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), DetalhesPrestadorActivity.class);
+                intent.putExtra("nome", servicoAdapter.getItem(position).getNome());
+                intent.putExtra("categoria", servicoAdapter.getItem(position).getCategoria());
+                intent.putExtra("cidade", servicoAdapter.getItem(position).getCidade());
+                intent.putExtra("perfil", servicoAdapter.getItem(position).getImg_perfil());
+                intent.putExtra("celular", servicoAdapter.getItem(position).getCelular());
+                intent.putExtra("perfil", servicoAdapter.getItem(position).getImg_perfil());
+                intent.putExtra("banner", servicoAdapter.getItem(position).getImg_capa());
+                intent.putExtra("experiencia", servicoAdapter.getItem(position).getAno_experiencia());
+                intent.putExtra("img_servico", servicoAdapter.getItem(position).getImg_servico());
+
+                startActivity(intent);
+            }
+        };
+
+    }
 }

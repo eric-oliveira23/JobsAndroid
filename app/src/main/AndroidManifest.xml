@@ -10,29 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jobs">
         <activity
-            android:name=".activities.AlterarDadosActivity"
+            android:name=".activities.AlterarDadosPrestadorActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.DetalhesPrestadorActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.AlterarDadosUserActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ConfiguracoesActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.RegistroPjActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.RegistroPfActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.RegistroUsuarioActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
@@ -54,7 +62,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.CadastroActivity"
             android:screenOrientation="portrait" />

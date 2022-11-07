@@ -1,17 +1,20 @@
 package com.eric.jobs.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -27,10 +30,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
-import com.eric.jobs.activities.RegistroPjActivity;
+import com.eric.jobs.activities.DetalhesPrestadorActivity;
 import com.eric.jobs.adapter.DestaqueAdapter;
 import com.eric.jobs.adapter.ServicoAdapter;
 import com.eric.jobs.model.Destaque;
@@ -55,16 +59,15 @@ public class HomeFragment extends Fragment {
     private final List<Prestador> prestadors = new ArrayList<>();
     private TextView txvWelcome, txvServicos, txvDestaques,
             txvJobs;
-    private DatabaseReference reference = ConfigFirebase.getReference();
-    private DatabaseReference servicosRef;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("image");
-    private ValueEventListener valueEventListenerServicos;
+    private final DatabaseReference reference = ConfigFirebase.getReference();
     private ServicoAdapter servicoAdapter;
-    private Button button;
+    private Button buttonFilter;
+    private ServicoAdapter.RecyclerViewClickListener listener;
     ImageSlider sliderDestaques;
     Animation main, txvs;
     Dialog dialog;
     String cidade;
+    boolean loaded = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,18 +78,29 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        main = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home);
-        txvs = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home_txv);
-        recyclerDestaques.startAnimation(main);
-        recyclerServicos.startAnimation(main);
-        button.startAnimation(main);
-        sliderDestaques.startAnimation(main);
-        txvServicos.startAnimation(main);
-        txvDestaques.startAnimation(main);
+        ConstraintLayout constraintRoot = getView().findViewById(R.id.constraintRoot);
 
-        txvWelcome.startAnimation(txvs);
-        txvJobs.startAnimation(txvs);
+        if (!loaded) {
+            constraintRoot.setVisibility(View.GONE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    constraintRoot.setVisibility(View.VISIBLE);
+                    main = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home);
+                    txvs = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_home_txv);
+                    recyclerDestaques.startAnimation(main);
+                    recyclerServicos.startAnimation(main);
+                    buttonFilter.startAnimation(main);
+                    sliderDestaques.startAnimation(main);
+                    txvServicos.startAnimation(main);
+                    txvDestaques.startAnimation(main);
 
+                    txvWelcome.startAnimation(txvs);
+                    txvJobs.startAnimation(txvs);
+                    loaded = true;
+                }
+            }, 2000);
+        }
         observable();
     }
 
@@ -102,12 +116,12 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         txvWelcome = getView().findViewById(R.id.txvWelcome);
-        button = getView().findViewById(R.id.buttonFilter);
+        buttonFilter = getView().findViewById(R.id.buttonFilter);
         txvServicos = getView().findViewById(R.id.txvServicos);
         txvDestaques = getView().findViewById(R.id.txvDestaques);
         txvJobs = getView().findViewById(R.id.txvJobs);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Initialize dialog
@@ -174,31 +188,12 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.background));
         sliderDestaques.setImageList(slideModels,false);
 
-        root.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Prestador prestador = dataSnapshot.getValue(Prestador.class);
-                    prestadors.add(prestador);
-                }
-                servicoAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 //-----------------------------------------RECYCLER DESTAQUES----------------------------------------
 
         //recycler view destaques
         recyclerDestaques = getView().findViewById(R.id.recyclerDestaques);
 
         //define o layout
-       /* RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerDestaques.setLayoutManager(layoutManager);*/
-
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -220,11 +215,11 @@ public class HomeFragment extends Fragment {
 
         //desativa o scroll do recycler
         //recyclerServicos.setNestedScrollingEnabled(false);
-
+        setOnClickListener();
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerServicos.setLayoutManager(linearLayoutManager);
 
-        servicoAdapter = new ServicoAdapter(prestadors, getActivity());
+        servicoAdapter = new ServicoAdapter(prestadors, getActivity(), listener);
         recyclerServicos.setAdapter(servicoAdapter);
 
         recyclerServicos.setHasFixedSize(true);
@@ -256,9 +251,9 @@ public class HomeFragment extends Fragment {
 
     public void recuperarServicos(){
 
-        servicosRef = reference.child("prestadores");
+        DatabaseReference servicosRef = reference.child("prestadores");
 
-        valueEventListenerServicos = servicosRef.addValueEventListener(new ValueEventListener() {
+        servicosRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -321,5 +316,25 @@ public class HomeFragment extends Fragment {
             servicoAdapter.setFilteredList(filteredList);
         }
 
+    }
+
+    public void setOnClickListener(){
+        listener = new ServicoAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), DetalhesPrestadorActivity.class);
+                intent.putExtra("nome", servicoAdapter.getItem(position).getNome());
+                intent.putExtra("categoria", servicoAdapter.getItem(position).getCategoria());
+                intent.putExtra("cidade", servicoAdapter.getItem(position).getCidade());
+                intent.putExtra("perfil", servicoAdapter.getItem(position).getImg_perfil());
+                intent.putExtra("celular", servicoAdapter.getItem(position).getCelular());
+                intent.putExtra("perfil", servicoAdapter.getItem(position).getImg_perfil());
+                intent.putExtra("banner", servicoAdapter.getItem(position).getImg_capa());
+                intent.putExtra("img_servico", servicoAdapter.getItem(position).getImg_servico());
+                intent.putExtra("experiencia", servicoAdapter.getItem(position).getAno_experiencia());
+
+                startActivity(intent);
+            }
+        };
     }
 }
