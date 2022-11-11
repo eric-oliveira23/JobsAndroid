@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -32,7 +31,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -44,7 +42,6 @@ public class AlterarDadosPrestadorActivity extends AppCompatActivity implements 
     String categoria = "";
     String experiencia = "";
     String cidade = "";
-    private Prestador prestador;
     private FirebaseAuth auth;
     private Uri profUri, bannerUri, servicoUri;
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -60,10 +57,18 @@ public class AlterarDadosPrestadorActivity extends AppCompatActivity implements 
         edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
 
         Button btnAlterarDados = findViewById(R.id.btnAlterarDados);
+        Button btnCancelar = findViewById(R.id.btnCancelar);
         btnAlterarDados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateData();
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

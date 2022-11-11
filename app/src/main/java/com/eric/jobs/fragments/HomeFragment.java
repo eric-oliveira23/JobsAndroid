@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
+import com.eric.jobs.activities.CategoriaActivity;
 import com.eric.jobs.activities.DetalhesPrestadorActivity;
 import com.eric.jobs.adapter.DestaqueAdapter;
 import com.eric.jobs.adapter.ServicoAdapter;
@@ -61,8 +63,11 @@ public class HomeFragment extends Fragment {
             txvJobs;
     private final DatabaseReference reference = ConfigFirebase.getReference();
     private ServicoAdapter servicoAdapter;
+    private DestaqueAdapter destaqueAdapter;
     private Button buttonFilter;
-    private ServicoAdapter.RecyclerViewClickListener listener;
+    private ImageView btnRemoveFilter;
+    private ServicoAdapter.RecyclerViewClickListener listenerServicos;
+    private DestaqueAdapter.RecyclerViewClickListener listenerDestaques;
     ImageSlider sliderDestaques;
     Animation main, txvs;
     Dialog dialog;
@@ -91,6 +96,7 @@ public class HomeFragment extends Fragment {
                     recyclerDestaques.startAnimation(main);
                     recyclerServicos.startAnimation(main);
                     buttonFilter.startAnimation(main);
+                    btnRemoveFilter.startAnimation(main);
                     sliderDestaques.startAnimation(main);
                     txvServicos.startAnimation(main);
                     txvDestaques.startAnimation(main);
@@ -117,6 +123,7 @@ public class HomeFragment extends Fragment {
 
         txvWelcome = getView().findViewById(R.id.txvWelcome);
         buttonFilter = getView().findViewById(R.id.buttonFilter);
+        btnRemoveFilter = getView().findViewById(R.id.btnRemoveFilter);
         txvServicos = getView().findViewById(R.id.txvServicos);
         txvDestaques = getView().findViewById(R.id.txvDestaques);
         txvJobs = getView().findViewById(R.id.txvJobs);
@@ -178,21 +185,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        btnRemoveFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                servicoAdapter.setFilteredList(prestadors);
+                Toast.makeText(getActivity(), "Filtros removidos",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //slider
         sliderDestaques = getView().findViewById(R.id.sliderDestaques);
 
         List<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.plumber));
-        slideModels.add(new SlideModel(R.drawable.marceneiro));
-        slideModels.add(new SlideModel(R.drawable.background));
-        slideModels.add(new SlideModel(R.drawable.background));
-        sliderDestaques.setImageList(slideModels,false);
+        slideModels.add(new SlideModel(R.drawable.bannerjobs));
+        slideModels.add(new SlideModel(R.drawable.bannerjobs));
+        slideModels.add(new SlideModel(R.drawable.bannerjobs));
+        slideModels.add(new SlideModel(R.drawable.bannerjobs));
+        sliderDestaques.setImageList(slideModels,true);
 
 //-----------------------------------------RECYCLER DESTAQUES----------------------------------------
 
         //recycler view destaques
         recyclerDestaques = getView().findViewById(R.id.recyclerDestaques);
 
+        destaquesOnClickListener();
         //define o layout
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -203,7 +220,7 @@ public class HomeFragment extends Fragment {
         this.recuperarServicos();
 
         //define o adapter
-        DestaqueAdapter destaqueAdapter = new DestaqueAdapter(destaques);
+        destaqueAdapter = new DestaqueAdapter(destaques, getActivity(), listenerDestaques);
         recyclerDestaques.setAdapter(destaqueAdapter);
 
         recyclerDestaques.setHasFixedSize(true);
@@ -219,7 +236,7 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerServicos.setLayoutManager(linearLayoutManager);
 
-        servicoAdapter = new ServicoAdapter(prestadors, getActivity(), listener);
+        servicoAdapter = new ServicoAdapter(prestadors, getActivity(), listenerServicos);
         recyclerServicos.setAdapter(servicoAdapter);
 
         recyclerServicos.setHasFixedSize(true);
@@ -278,27 +295,21 @@ public class HomeFragment extends Fragment {
     public void prepararDestaques(){
 
         Destaque d;
-        d = new Destaque("Baroli Corretora","Corretora","Bocaina - SP",R.drawable.marceneiro);
+        d = new Destaque("Transporte", R.drawable.transporte);
         this.destaques.add(d);
 
-        d = new Destaque("Baroli Corretora","Corretora","Bocaina - SP",R.drawable.plumber);
+        d = new Destaque("Instalação", R.drawable.instalacao);
         this.destaques.add(d);
 
-        d = new Destaque("Baroli Corretora","Corretora","Bocaina - SP",R.drawable.marceneiro);
+        d = new Destaque("Manutenção", R.drawable.manutencao);
         this.destaques.add(d);
 
-        d = new Destaque("Baroli Corretora","Corretora","Bocaina - SP",R.drawable.plumber);
+        d = new Destaque("Elétrica", R.drawable.eletrica);
         this.destaques.add(d);
 
-        d = new Destaque("Baroli Corretora","Corretora","Bocaina - SP",R.drawable.prestador);
+        d = new Destaque("Comércio", R.drawable.comercio);
         this.destaques.add(d);
 
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        //reference.removeEventListener(valueEventListenerUsuario);
     }
 
     private void filterList(String text) {
@@ -319,7 +330,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void setOnClickListener(){
-        listener = new ServicoAdapter.RecyclerViewClickListener() {
+        listenerServicos = new ServicoAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), DetalhesPrestadorActivity.class);
@@ -337,4 +348,17 @@ public class HomeFragment extends Fragment {
             }
         };
     }
+
+    public void destaquesOnClickListener(){
+        listenerDestaques = new DestaqueAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), CategoriaActivity.class);
+                intent.putExtra("nome", destaqueAdapter.getItem(position).getTituloDestaque());
+
+                startActivity(intent);
+            }
+        };
+    }
+
 }

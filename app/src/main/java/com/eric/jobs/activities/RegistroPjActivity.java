@@ -1,5 +1,7 @@
 package com.eric.jobs.activities;
 
+import static com.eric.jobs.helper.ValidarCNPJ.imprimeCNPJ;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
+import com.eric.jobs.helper.ValidarCNPJ;
+import com.eric.jobs.helper.ValidarCPF;
 import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Prestador;
@@ -340,6 +344,8 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
         }
         else {
 
+            if (ValidarCNPJ.isCNPJ(cnpj)){
+
             if (!senha.equals(senhaConfirmar)) {
                 Toast.makeText(RegistroPjActivity.this,
                         "As senhas não coincidem!",
@@ -350,7 +356,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
 
                 prestador = new Prestador();
                 prestador.setNome(nome);
-                prestador.setDocumento(cnpj);
+                prestador.setDocumento(imprimeCNPJ(cnpj));
                 prestador.setCidade(cidade);
                 prestador.setEmail(email);
                 prestador.setSenha(senha);
@@ -362,6 +368,11 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
 
                 cadastrarPrestador();
 
+                }
+            }else{
+                Toast.makeText(RegistroPjActivity.this,
+                        "Insira um CPF válido!",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -379,7 +390,6 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 servicoUri = data.getData();
         }
     }
-
 
     private void uploadPic(){
 

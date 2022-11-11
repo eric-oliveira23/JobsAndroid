@@ -32,6 +32,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvServicos" />
 
+    <ImageView
+        android:id="@+id/btnRemoveFilter"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_filter"
+        android:src="@drawable/ic_baseline_close_24"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/poppins"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:textColor="@color/grey"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/buttonFilter"
+        app:layout_constraintTop_toBottomOf="@+id/txvServicos" />
+
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/sliderDestaques"
         android:layout_width="0dp"

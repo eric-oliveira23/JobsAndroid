@@ -10,13 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jobs">
         <activity
-            android:name=".activities.AlterarDadosPrestadorActivity"
+            android:name=".activities.CategoriaActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".activities.AlterarDadosPrestadorActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.DetalhesPrestadorActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AlterarDadosUserActivity"
             android:exported="false"

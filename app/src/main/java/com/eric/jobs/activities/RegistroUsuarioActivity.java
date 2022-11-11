@@ -193,4 +193,9 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void loginClicked(View view){
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
 }

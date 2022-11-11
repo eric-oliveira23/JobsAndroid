@@ -1,5 +1,7 @@
 package com.eric.jobs.activities;
 
+import static com.eric.jobs.helper.ValidarCPF.imprimeCPF;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eric.jobs.R;
+import com.eric.jobs.helper.ValidarCPF;
 import com.eric.jobs.services.ConfigFirebase;
 import com.eric.jobs.helper.Base64Custom;
 import com.eric.jobs.model.Prestador;
@@ -337,17 +340,19 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         }
         else {
 
+            if (ValidarCPF.isCPF(cpf)){
+
             if (!senha.equals(senhaConfirmar)) {
                 Toast.makeText(RegistroPfActivity.this,
                         "As senhas não coincidem!",
                         Toast.LENGTH_SHORT).show();
             }
 
-            else{
+            else {
 
                 prestador = new Prestador();
                 prestador.setNome(nome);
-                prestador.setDocumento(cpf);
+                prestador.setDocumento(imprimeCPF(cpf));
                 prestador.setCidade(cidade);
                 prestador.setEmail(email);
                 prestador.setSenha(senha);
@@ -358,6 +363,11 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                 prestador.setTipo("pf");
 
                 cadastrarPrestador();
+            }
+            }else{
+                Toast.makeText(RegistroPfActivity.this,
+                        "Insira um CPF válido!",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

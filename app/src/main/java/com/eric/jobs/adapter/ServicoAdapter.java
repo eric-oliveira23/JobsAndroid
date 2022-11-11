@@ -19,8 +19,8 @@ import java.util.List;
 
 public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHolder>{
 
-    List<Prestador> prestadors;
-    Context context;
+    private List<Prestador> prestadors;
+    private Context context;
     private RecyclerViewClickListener listener;
 
     public ServicoAdapter(List<Prestador> servicoList, FragmentActivity activity, RecyclerViewClickListener listener) {
@@ -49,7 +49,6 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
         holder.tituloServico.setText(prestador.getNome());
         holder.categoriaServico.setText(prestador.getCategoria());
         holder.cidadeServico.setText(prestador.getCidade());
-      // holder.imgServico.setImageResource(prestador.get);
         Glide.with(context).load(prestadors.get(position).getImg_perfil()).into(holder.imgServico);
 
     }

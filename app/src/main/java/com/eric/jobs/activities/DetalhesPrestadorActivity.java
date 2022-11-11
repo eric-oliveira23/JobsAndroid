@@ -1,8 +1,10 @@
 package com.eric.jobs.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +19,26 @@ import java.util.Objects;
 
 public class DetalhesPrestadorActivity extends AppCompatActivity {
 
+    private String nome = "";
+    private String categoria = "";
+    private String cidade = "";
+    private String celular = "";
+    private String banner = "";
+    private String perfil = "";
+    private String exp = "";
+    private String img_servico = "";
+    private TextView txvNome;
+    private TextView txvDetalhes;
+    private TextView txvCategoria;
+    private TextView txvTempoExp;
+    private ImageView imgPerfil;
+    private ImageView imgBanner;
+    private ImageView imgServicos;
+    private TextView txvCelular;
+    private TextView txvEndereco;
+    private TextView txvServicosPrestados;
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,26 +46,45 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
 
         LinearLayout linearCategoria = findViewById(R.id.linearCategoria);
         LinearLayout linearTextoCategoria = findViewById(R.id.linearTextoCategoria);
-        TextView txvNome = findViewById(R.id.txvNome);
-        TextView txvDetalhes = findViewById(R.id.txvDetalhes);
-        TextView txvCategoria = findViewById(R.id.txvCategoria);
-        TextView txvTempoExp = findViewById(R.id.txvTempoExp);
-        ImageView imgPerfil = findViewById(R.id.imgPerfil);
-        ImageView imgBanner = findViewById(R.id.imgBanner);
-        ImageView imgServicos = findViewById(R.id.imgServicos);
-        TextView txvCelular = findViewById(R.id.txvCelular);
-        TextView txvEndereco = findViewById(R.id.txvEndereco);
-        TextView txvServicosPrestados = findViewById(R.id.txvServicosPrestados);
+        txvNome = findViewById(R.id.txvNome);
+        txvDetalhes = findViewById(R.id.txvDetalhes);
+        txvCategoria = findViewById(R.id.txvCategoria);
+        txvTempoExp = findViewById(R.id.txvTempoExp);
+        imgPerfil = findViewById(R.id.imgPerfil);
+        imgBanner = findViewById(R.id.imgBanner);
+        imgServicos = findViewById(R.id.imgServicos);
+        txvCelular = findViewById(R.id.txvCelular);
+        txvEndereco = findViewById(R.id.txvEndereco);
+        txvServicosPrestados = findViewById(R.id.txvServicosPrestados);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
-        String nome = "";
-        String categoria = "";
-        String cidade = "";
-        String celular = "";
-        String banner = "";
-        String perfil = "";
-        String exp = "";
-        String img_servico = "";
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
 
+        getData();
+
+        linearCategoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (linearTextoCategoria.getVisibility() == View.INVISIBLE){
+                    linearTextoCategoria.setVisibility(View.VISIBLE);
+                    txvDetalhes.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0,
+                            R.drawable.ic_baseline_arrow_drop_up_24, 0);
+                }else {
+                    linearTextoCategoria.setVisibility(View.INVISIBLE);
+                    txvDetalhes.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0,
+                            R.drawable.ic_baseline_arrow_drop_down_24, 0);
+                }
+            }
+        });
+
+    }
+
+    public void getData(){
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             nome = extras.getString("nome");
@@ -76,20 +117,13 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
             Glide.with(this).load(img_servico).apply(options).into(imgServicos);
         }
 
-        linearCategoria.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                if (linearTextoCategoria.getVisibility() == View.INVISIBLE){
-                    linearTextoCategoria.setVisibility(View.VISIBLE);
-                    txvDetalhes.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0,
-                            R.drawable.ic_baseline_arrow_drop_up_24, 0);
-                }else {
-                    linearTextoCategoria.setVisibility(View.INVISIBLE);
-                    txvDetalhes.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0,
-                            R.drawable.ic_baseline_arrow_drop_down_24, 0);
-                }
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
             }
-        });
+        },2000);
 
     }
+
 }

@@ -1,7 +1,6 @@
 package com.eric.jobs.fragments;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.eric.jobs.R;
 import com.eric.jobs.activities.AlterarDadosPrestadorActivity;
 import com.eric.jobs.activities.AlterarDadosUserActivity;
@@ -31,13 +30,10 @@ import com.eric.jobs.model.Usuario;
 import com.eric.jobs.services.user.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PerfilFragment extends Fragment {
 
     private final UserRepository userRepository = new UserRepository();
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ConstraintLayout constraintUser, constraintPrestador;
     private TextView txvCelular, txvEndereco, txvNome, txvCategoria, txvTempoExp,
             txvDetalhes, txvServicosPrestados;
@@ -59,6 +55,7 @@ public class PerfilFragment extends Fragment {
         observable();
 
         txvCelular = getView().findViewById(R.id.txvCelular);
+        swipeRefreshLayout = getView().findViewById(R.id.swipeRefreshLayout);
         txvServicosPrestados = getView().findViewById(R.id.txvServicosPrestados);
         txvEndereco = getView().findViewById(R.id.txvEndereco);
         txvDetalhes = getView().findViewById(R.id.txvDetalhes);
@@ -79,6 +76,13 @@ public class PerfilFragment extends Fragment {
         Button btnLogoutUser = getView().findViewById(R.id.btnLogoutUser);
         Button btnSettingsUser = getView().findViewById(R.id.btnSettingsUser);
         Button btnSettingsPrestador = getView().findViewById(R.id.btnSettingsPrestador);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                observable();
+            }
+        });
 
         btnSettingsUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,28 +150,43 @@ public class PerfilFragment extends Fragment {
                     txvCategoria.setText(prestador.getCategoria());
                     txvTempoExp.setText(prestador.getAno_experiencia());
 
-                    RequestOptions options = new RequestOptions()
-                            .centerCrop()
+                    RequestOptions optionsProfile = new RequestOptions()
                             .placeholder(R.drawable.default_profile);
+
+                    RequestOptions optionsBanner = new RequestOptions()
+                            .placeholder(R.drawable.default_banner);
 
                     Glide.with(getActivity())
                             .load(prestador.getImg_perfil())
-                            .apply(options).into(imgPerfil);
+                            .apply(optionsProfile).into(imgPerfil);
 
                     Glide.with(getActivity())
                             .load(prestador.getImg_capa())
-                            .apply(options).into(imgBanner);
+                            .apply(optionsBanner).into(imgBanner);
 
-                    if (prestador.getImg_servico().isEmpty()) {
-                        imgServicos.setVisibility(View.GONE);
-                        txvServicosPrestados.setVisibility(View.GONE);
-                    }else {
-                        Glide.with(getActivity())
-                                .load(prestador.getImg_servico())
-                                .apply(options).into(imgServicos);
-                    }
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (prestador.getImg_servico().isEmpty()) {
+                                imgServicos.setVisibility(View.GONE);
+                                txvServicosPrestados.setVisibility(View.GONE);
+                            }else {
+                                Glide.with(getActivity())
+                                        .load(prestador.getImg_servico())
+                                        .apply(optionsBanner).into(imgServicos);
+                            }
+                        }
+                    },4000);
 
                 }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },2000);
+
             }
         };
 

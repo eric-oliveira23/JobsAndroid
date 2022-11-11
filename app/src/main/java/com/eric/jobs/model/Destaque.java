@@ -1,17 +1,17 @@
 package com.eric.jobs.model;
 
+import android.content.Context;
+
+import com.eric.jobs.adapter.ServicoAdapter;
+
 public class Destaque {
 
     private String tituloDestaque;
-    private String categoriaDestaque;
-    private String cidadeDestaque;
     private int imgDestaque;
 
-    public Destaque(String destaque, String categoria, String cidade, int img) {
+    public Destaque(String destaque, int img) {
 
         this.tituloDestaque = destaque;
-        this.categoriaDestaque = categoria;
-        this.cidadeDestaque = cidade;
         this.imgDestaque = img;
 
     }
@@ -22,22 +22,6 @@ public class Destaque {
 
     public void setTituloDestaque(String tituloDestaque) {
         this.tituloDestaque = tituloDestaque;
-    }
-
-    public String getCategoriaDestaque() {
-        return categoriaDestaque;
-    }
-
-    public void setCategoriaDestaque(String categoriaDestaque) {
-        this.categoriaDestaque = categoriaDestaque;
-    }
-
-    public String getCidadeDestaque() {
-        return cidadeDestaque;
-    }
-
-    public void setCidadeDestaque(String cidadeDestaque) {
-        this.cidadeDestaque = cidadeDestaque;
     }
 
     public int getImgDestaque() {

@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edtConfirmarSenha" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/txvFiltroCategoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -162,7 +162,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinExp" />
 
-        <com.santalu.maskara.widget.MaskEditText
+        <EditText
             android:id="@+id/edtCNPJ"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -177,7 +177,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16"
-            app:mask="___.___.___/____-__"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
