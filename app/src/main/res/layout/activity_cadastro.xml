@@ -7,18 +7,6 @@
     android:background="@drawable/backgroundlogin"
     tools:context=".activities.CadastroActivity">
 
-  <androidx.appcompat.widget.AppCompatButton
-      android:id="@+id/BtnAjuda"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="4dp"
-      android:background="@null"
-      android:textColor="@color/black"
-      android:text="Ajuda"
-      android:textAllCaps="false"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
   <TextView
       android:id="@+id/txvLogin"
       android:layout_width="wrap_content"

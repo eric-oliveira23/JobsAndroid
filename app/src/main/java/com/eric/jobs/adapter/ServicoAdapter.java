@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.eric.jobs.R;
 import com.eric.jobs.model.Prestador;
 
@@ -49,7 +50,14 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
         holder.tituloServico.setText(prestador.getNome());
         holder.categoriaServico.setText(prestador.getCategoria());
         holder.cidadeServico.setText(prestador.getCidade());
-        Glide.with(context).load(prestadors.get(position).getImg_perfil()).into(holder.imgServico);
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.default_profile);
+
+        Glide.with(context)
+                .load(prestadors.get(position).getImg_perfil())
+                .apply(options).into(holder.imgServico);
 
     }
 

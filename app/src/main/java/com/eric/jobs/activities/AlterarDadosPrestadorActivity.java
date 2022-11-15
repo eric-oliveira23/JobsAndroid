@@ -37,7 +37,8 @@ import com.google.firebase.storage.UploadTask;
 public class AlterarDadosPrestadorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView txvCategoria, txvCidade;
-    EditText edtNomeAlterar, edtCelular, edtTelefoneFixo;
+    EditText edtNomeAlterar, edtCelular, edtTelefoneFixo,
+    edtFacebook, edtInstagram;
     Dialog dialog;
     String categoria = "";
     String experiencia = "";
@@ -55,6 +56,8 @@ public class AlterarDadosPrestadorActivity extends AppCompatActivity implements 
         edtNomeAlterar = findViewById(R.id.edtNomeAlterar);
         edtCelular = findViewById(R.id.edtCelular);
         edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
+        edtFacebook = findViewById(R.id.edtFacebook);
+        edtInstagram = findViewById(R.id.edtInsta);
 
         Button btnAlterarDados = findViewById(R.id.btnAlterarDados);
         Button btnCancelar = findViewById(R.id.btnCancelar);
@@ -348,10 +351,13 @@ public class AlterarDadosPrestadorActivity extends AppCompatActivity implements 
         String novoCelular = edtCelular.getText().toString();
         String novoTelefone = edtTelefoneFixo.getText().toString();
         String novaCategoria = txvCategoria.getText().toString();
+        String urlFacebook = edtFacebook.getText().toString();
+        String urlInstagram = edtInstagram.getText().toString();
 
         if (novoNome.isEmpty() && cidade.isEmpty() && categoria.isEmpty()
                 && experiencia.isEmpty() && novoCelular.isEmpty()
-                && novoTelefone.isEmpty() && profUri.equals(Uri.EMPTY) &&
+                && novoTelefone.isEmpty() && urlFacebook.isEmpty() &&
+                urlInstagram.isEmpty() && profUri.equals(Uri.EMPTY) &&
                 servicoUri.equals(Uri.EMPTY) && bannerUri.equals(Uri.EMPTY)
                 && novaCategoria.isEmpty()) {
 
@@ -401,6 +407,18 @@ public class AlterarDadosPrestadorActivity extends AppCompatActivity implements 
                     DatabaseReference newTelRef = reference.child("prestadores").child(userId).
                             child("telefone");
                     newTelRef.setValue(novoTelefone);
+                }
+
+                if (!urlInstagram.isEmpty()) {
+                    DatabaseReference newInstaRef = reference.child("prestadores").child(userId).
+                            child("url_instagram");
+                    newInstaRef.setValue(urlInstagram);
+                }
+
+                if (!urlFacebook.isEmpty()) {
+                    DatabaseReference newFaceRef = reference.child("prestadores").child(userId).
+                            child("url_facebook");
+                    newFaceRef.setValue(urlFacebook);
                 }
 
                 if (profUri != null){

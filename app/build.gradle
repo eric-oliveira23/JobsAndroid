@@ -62,6 +62,9 @@ dependencies {
     //SwipeRefresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    //Floating action menu button
+    implementation 'com.github.clans:fab:1.6.4'
+
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

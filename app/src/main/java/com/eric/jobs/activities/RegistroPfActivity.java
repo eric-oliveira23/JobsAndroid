@@ -53,7 +53,8 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
     private TextView txvCidade;
     private EditText edtNomeCompleto, edtCPF,
             edtEmail, edtSenha, edtConfirmarSenha,
-            edtCelular, edtTelefoneFixo;
+            edtCelular, edtTelefoneFixo, edtInsta,
+            edtFacebook;
     private Prestador prestador;
     private Uri profUri, bannerUri, servicoUri;
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -70,7 +71,6 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_registro_pf);
 
         TextView btnLogar = findViewById(R.id.btnLogar);
-        Button btnRegistrarPf = findViewById(R.id.btnRegistrarPf);
         Button btnBanner = findViewById(R.id.btnBanner);
         Button btnPerfil = findViewById(R.id.btnPerfil);
         Button btnImgServico = findViewById(R.id.btnImgServico);
@@ -82,6 +82,8 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
         edtCelular = findViewById(R.id.edtCelular);
         edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
+        edtInsta = findViewById(R.id.edtInsta);
+        edtFacebook = findViewById(R.id.edtFacebook);
 
         //categoria
 
@@ -329,6 +331,8 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
         String senhaConfirmar = edtConfirmarSenha.getText().toString();
         String celular = edtCelular.getText().toString();
         String telefone = edtTelefoneFixo.getText().toString();
+        String url_instagram = edtInsta.getText().toString();
+        String url_facebook = edtFacebook.getText().toString();
 
         if (nome.isEmpty() || cidade.isEmpty() ||
                 email.isEmpty() || senha.isEmpty() || senhaConfirmar.isEmpty() ||
@@ -360,6 +364,8 @@ public class RegistroPfActivity extends AppCompatActivity implements AdapterView
                 prestador.setAno_experiencia(experiencia);
                 prestador.setCelular(celular);
                 prestador.setTelefone(telefone);
+                prestador.setUrl_facebook(url_facebook);
+                prestador.setUrl_instagram(url_instagram);
                 prestador.setTipo("pf");
 
                 cadastrarPrestador();

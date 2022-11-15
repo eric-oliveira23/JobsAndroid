@@ -3,21 +3,29 @@ package com.eric.jobs.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.eric.jobs.R;
-import com.eric.jobs.model.Prestador;
+import com.eric.jobs.services.ConfigFirebase;
+import com.github.clans.fab.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Objects;
 
-public class DetalhesPrestadorActivity extends AppCompatActivity {
+public class DetalhesPrestadorActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String nome = "";
     private String categoria = "";
@@ -37,7 +45,13 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
     private TextView txvCelular;
     private TextView txvEndereco;
     private TextView txvServicosPrestados;
+    private TextView txvInstagram, txvFacebook;
+    private FloatingActionButton fabContato, fabEmail;
     SwipeRefreshLayout swipeRefreshLayout;
+    FirebaseAuth auth = ConfigFirebase.getAutenticacao();
+    String email = auth.getCurrentUser().getEmail();
+    String urlInsta = "";
+    String urlFace = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +64,58 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
         txvDetalhes = findViewById(R.id.txvDetalhes);
         txvCategoria = findViewById(R.id.txvCategoria);
         txvTempoExp = findViewById(R.id.txvTempoExp);
-        imgPerfil = findViewById(R.id.imgPerfil);
-        imgBanner = findViewById(R.id.imgBanner);
-        imgServicos = findViewById(R.id.imgServicos);
+        txvInstagram = findViewById(R.id.txvInstagram);
+        txvFacebook = findViewById(R.id.txvFacebook);
         txvCelular = findViewById(R.id.txvCelular);
         txvEndereco = findViewById(R.id.txvEndereco);
         txvServicosPrestados = findViewById(R.id.txvServicosPrestados);
+
+        imgPerfil = findViewById(R.id.imgPerfil);
+        imgBanner = findViewById(R.id.imgBanner);
+        imgServicos = findViewById(R.id.imgServicos);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        fabContato = findViewById(R.id.fabContato);
+        fabEmail = findViewById(R.id.fabEmail);
+
+        getData();
+
+        txvNome.setOnClickListener(this);
+        txvCelular.setOnClickListener(this);
+        txvFacebook.setOnClickListener(this);
+        txvInstagram.setOnClickListener(this);
+
+        fabContato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+
+                intent.putExtra(ContactsContract.Intents.Insert.EMAIL, email)
+
+                        .putExtra(ContactsContract.Intents.Insert.EMAIL_TYPE,
+                                ContactsContract.CommonDataKinds.Email.TYPE_WORK)
+
+                        .putExtra(ContactsContract.Intents.Insert.PHONE, celular)
+
+                        .putExtra(ContactsContract.Intents.Insert.PHONE_TYPE,
+                                ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
+
+                        .putExtra(ContactsContract.Intents.Insert.NAME, nome);
+
+                startActivity(intent);
+            }
+        });
+
+        fabEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Trabalho");
+
+                startActivity(Intent.createChooser(emailIntent, "Enviar Email"));
+            }
+        });
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -64,8 +123,6 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
                 getData();
             }
         });
-
-        getData();
 
         linearCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +138,6 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void getData(){
@@ -95,6 +151,8 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
             perfil = extras.getString("perfil");
             exp = extras.getString("experiencia");
             img_servico = extras.getString("img_servico");
+            urlInsta = extras.getString("url_instagram");
+            urlFace = extras.getString("url_facebook");
         }
 
         txvNome.setText(nome);
@@ -110,6 +168,12 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
         Glide.with(this).load(banner).apply(options).into(imgBanner);
         Glide.with(this).load(perfil).apply(options).into(imgPerfil);
 
+        if (urlInsta.isEmpty())
+            txvInstagram.setVisibility(View.GONE);
+
+        if (urlFace.isEmpty())
+            txvFacebook.setVisibility(View.GONE);
+
         if (img_servico.isEmpty()) {
             imgServicos.setVisibility(View.GONE);
             txvServicosPrestados.setVisibility(View.GONE);
@@ -124,6 +188,55 @@ public class DetalhesPrestadorActivity extends AppCompatActivity {
             }
         },2000);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.txvNome:
+                clipData("nome", nome);
+                showCopiedMessage();
+                break;
+
+            case R.id.txvCelular:
+                clipData("celular", celular);
+                showCopiedMessage();
+                break;
+
+            case R.id.txvFacebook:
+                if (urlFace.startsWith("https://") || urlFace.startsWith("http://")) {
+                    Uri uri = Uri.parse(urlFace);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this, "Link inválido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.txvInstagram:
+                if (urlInsta.startsWith("https://") || urlInsta.startsWith("http://")) {
+                    Uri uri = Uri.parse(urlInsta);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this, "Link inválido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+    }
+
+    public void showCopiedMessage(){
+        Toast.makeText(this,
+                "Copiado para a área de transferência.",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public void clipData(String label, String message){
+        ClipboardManager clipNome = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(label, message);
+        clipNome.setPrimaryClip(clip);
     }
 
 }

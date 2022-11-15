@@ -234,6 +234,91 @@
         tools:ignore="SpeakableTextPresentCheck"
         app:mask="____-_____"/>
 
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Link do Instagram "
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/edtInsta"
+        app:layout_constraintTop_toBottomOf="@+id/edtTelefoneFixo" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(não obrigatório)"
+        android:textColor="@color/purple_primary"
+        android:textSize="13sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
+        app:layout_constraintStart_toEndOf="@id/textView40" />
+
+    <EditText
+        android:id="@+id/edtInsta"
+        android:drawableEnd="@drawable/instagram"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Link do Facebook "
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:layout_marginStart="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/edtFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/edtInsta" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(não obrigatório)"
+        android:textColor="@color/purple_primary"
+        android:textSize="13sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
+        app:layout_constraintStart_toEndOf="@id/textView43" />
+
+    <EditText
+        android:id="@+id/edtFacebook"
+        android:drawableEnd="@drawable/facebook"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/et_login"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:textColorHint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView43"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView27"
@@ -246,7 +331,7 @@
         android:textSize="16sp"
         android:layout_marginStart="45dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTelefoneFixo" />
+        app:layout_constraintTop_toBottomOf="@+id/edtFacebook" />
 
     <TextView
         android:id="@+id/textView28"

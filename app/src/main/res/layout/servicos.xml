@@ -31,7 +31,6 @@
                 android:id="@+id/tituloServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5sp"
                 android:text="Mr. Plumber"
                 android:textSize="15sp"
                 android:maxLength="35"
@@ -41,8 +40,8 @@
                 android:id="@+id/categoriaServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="100"
-                android:textSize="12dp"
+                android:maxLength="90"
+                android:textSize="12sp"
                 android:text="Encanador"
                 android:textColor="@color/grey" />
 
@@ -50,7 +49,6 @@
                 android:id="@+id/cidadeServico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0sp"
                 android:text="Bocaina - SP"
                 android:textColor="@color/grey" />
         </LinearLayout>

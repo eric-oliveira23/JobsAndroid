@@ -1,6 +1,7 @@
 package com.eric.jobs.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -36,10 +38,12 @@ public class PerfilFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private ConstraintLayout constraintUser, constraintPrestador;
     private TextView txvCelular, txvEndereco, txvNome, txvCategoria, txvTempoExp,
-            txvDetalhes, txvServicosPrestados;
+            txvDetalhes, txvServicosPrestados, txvInstagram, txvFacebook;
 
     private ImageView imgPerfil, imgBanner, imgServicos;
     private LinearLayout linearTextoCategoria;
+    private String urlInsta = "";
+    private String urlFacebook = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +66,8 @@ public class PerfilFragment extends Fragment {
         txvNome = getView().findViewById(R.id.txvNome);
         txvTempoExp = getView().findViewById(R.id.txvTempoExp);
         txvCategoria = getView().findViewById(R.id.txvCategoria);
+        txvFacebook = getView().findViewById(R.id.txvFacebook);
+        txvInstagram = getView().findViewById(R.id.txvInstagram);
         imgBanner = getView().findViewById(R.id.imgBanner);
         imgPerfil = getView().findViewById(R.id.imgPerfil);
         constraintUser = getView().findViewById(R.id.constraintUser);
@@ -81,6 +87,35 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onRefresh() {
                 observable();
+            }
+        });
+
+        //--------------------links externos--------------------------------------------------------
+        txvInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = urlInsta;
+                if (url.startsWith("https://") || url.startsWith("http://")) {
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "Link inválido", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        txvFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = urlFacebook;
+                if (url.startsWith("https://") || url.startsWith("http://")) {
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "Link inválido", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -149,6 +184,8 @@ public class PerfilFragment extends Fragment {
                     txvNome.setText(prestador.getNome());
                     txvCategoria.setText(prestador.getCategoria());
                     txvTempoExp.setText(prestador.getAno_experiencia());
+                    urlInsta = prestador.getUrl_instagram();
+                    urlFacebook = prestador.getUrl_facebook();
 
                     RequestOptions optionsProfile = new RequestOptions()
                             .placeholder(R.drawable.default_profile);
@@ -164,6 +201,16 @@ public class PerfilFragment extends Fragment {
                             .load(prestador.getImg_capa())
                             .apply(optionsBanner).into(imgBanner);
 
+                    if (urlInsta.isEmpty())
+                        txvInstagram.setVisibility(View.GONE);
+                    else
+                        txvInstagram.setVisibility(View.VISIBLE);
+
+                    if (urlFacebook.isEmpty())
+                        txvFacebook.setVisibility(View.GONE);
+                    else
+                        txvFacebook.setVisibility(View.VISIBLE);
+
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -174,9 +221,17 @@ public class PerfilFragment extends Fragment {
                                 Glide.with(getActivity())
                                         .load(prestador.getImg_servico())
                                         .apply(optionsBanner).into(imgServicos);
+
+                                if (txvServicosPrestados.getVisibility() == View.GONE ||
+                                        imgServicos.getVisibility() == View.GONE){
+
+                                    txvServicosPrestados.setVisibility(View.VISIBLE);
+                                    imgServicos.setVisibility(View.VISIBLE);
+
+                                }
                             }
                         }
-                    },4000);
+                    },2000);
 
                 }
 
@@ -198,6 +253,5 @@ public class PerfilFragment extends Fragment {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
-
 
 }

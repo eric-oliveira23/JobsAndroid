@@ -96,6 +96,8 @@ public class CategoriaActivity extends AppCompatActivity {
                 intent.putExtra("banner", servicoAdapter.getItem(position).getImg_capa());
                 intent.putExtra("img_servico", servicoAdapter.getItem(position).getImg_servico());
                 intent.putExtra("experiencia", servicoAdapter.getItem(position).getAno_experiencia());
+                intent.putExtra("url_facebook", servicoAdapter.getItem(position).getUrl_facebook());
+                intent.putExtra("url_instagram", servicoAdapter.getItem(position).getUrl_instagram());
 
                 startActivity(intent);
             }

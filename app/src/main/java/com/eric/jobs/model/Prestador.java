@@ -20,6 +20,8 @@ public class Prestador {
     private String img_servico = "";
     private String idUser = "";
     private String ano_experiencia = "";
+    private String url_instagram = "";
+    private String url_facebook = "";
 
     public void salvarPrestador(){
 
@@ -28,6 +30,22 @@ public class Prestador {
                 .child(this.idUser)
                 .setValue(this);
 
+    }
+
+    public String getUrl_instagram() {
+        return url_instagram;
+    }
+
+    public void setUrl_instagram(String url_instagram) {
+        this.url_instagram = url_instagram;
+    }
+
+    public String getUrl_facebook() {
+        return url_facebook;
+    }
+
+    public void setUrl_facebook(String url_facebook) {
+        this.url_facebook = url_facebook;
     }
 
     public String getAno_experiencia() {

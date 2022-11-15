@@ -53,7 +53,8 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
     private TextView txvCategoria, txvCidade;
     private EditText edtNomeFantasia, edtCNPJ,
             edtEmail, edtSenha, edtConfirmarSenha,
-             edtCelular, edtTelefoneFixo;
+             edtCelular, edtTelefoneFixo, edtInsta,
+            edtFacebook;
     private Prestador prestador;
     private FirebaseAuth auth;
     private Uri profUri, bannerUri, servicoUri;
@@ -253,6 +254,8 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
         edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
         edtCelular = findViewById(R.id.edtCelular);
         edtTelefoneFixo = findViewById(R.id.edtTelefoneFixo);
+        edtInsta = findViewById(R.id.edtInsta);
+        edtFacebook = findViewById(R.id.edtFacebook);
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,6 +335,8 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
         String senhaConfirmar = edtConfirmarSenha.getText().toString();
         String celular = edtCelular.getText().toString();
         String telefone = edtTelefoneFixo.getText().toString();
+        String url_instagram = edtInsta.getText().toString();
+        String url_facebook = edtFacebook.getText().toString();
 
         if (nome.isEmpty() || cidade.isEmpty() ||
                 email.isEmpty() || senha.isEmpty() || senhaConfirmar.isEmpty() ||
@@ -364,6 +369,8 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 prestador.setAno_experiencia(experiencia);
                 prestador.setCelular(celular);
                 prestador.setTelefone(telefone);
+                prestador.setUrl_facebook(url_facebook);
+                prestador.setUrl_instagram(url_instagram);
                 prestador.setTipo("pj");
 
                 cadastrarPrestador();
@@ -371,7 +378,7 @@ public class RegistroPjActivity extends AppCompatActivity implements AdapterView
                 }
             }else{
                 Toast.makeText(RegistroPjActivity.this,
-                        "Insira um CPF válido!",
+                        "Insira um CNPJ válido!",
                         Toast.LENGTH_SHORT).show();
             }
         }
