@@ -199,9 +199,9 @@ public class HomeFragment extends Fragment {
 
         List<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.bannerjobs));
-        slideModels.add(new SlideModel(R.drawable.bannerjobs));
-        slideModels.add(new SlideModel(R.drawable.bannerjobs));
-        slideModels.add(new SlideModel(R.drawable.bannerjobs));
+        slideModels.add(new SlideModel(R.drawable.banner2));
+        slideModels.add(new SlideModel(R.drawable.banner3));
+        slideModels.add(new SlideModel(R.drawable.banner4));
         sliderDestaques.setImageList(slideModels,true);
 
 //-----------------------------------------RECYCLER DESTAQUES----------------------------------------
