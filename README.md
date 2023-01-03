@@ -97,6 +97,8 @@ Aprender a como manipular o Firebase foi essencial para o processo de desenvolvi
 **Realtime Database** usado para salvar dados dos usuários, e atualiza-los em tempo real na plataforma.
  
  **Firebase Storage** usado para realizar o upload de imagens na nuvem.
+ 
+ **Firebase Auth** usado para autenticação de usuários (logar, registrar ou criar contas).
 
  **Glide** usado para a aquisição dos links das imagens em nuvem, permitindo exibi-las para o usuário.  
 
